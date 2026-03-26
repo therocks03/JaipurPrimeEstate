@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admin Panel – Jaipur Dream Homes</title>
+<title>Admin Panel – Jaipur PrimeEstate</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -209,7 +209,7 @@
   <div class="login-box">
     <div class="login-logo">
       <div class="icon"><svg viewBox="0 0 24 24" fill="none"><path d="M3 9.5L12 3L21 9.5V20H15V14H9V20H3V9.5Z" fill="#C9A84C"/></svg></div>
-      <h2>Jaipur Dream Homes</h2>
+      <h2>Jaipur PrimeEstate</h2>
       <p>Admin Panel</p>
     </div>
     <div class="lf"><label>Username</label><input type="text" id="loginUser" placeholder="admin" autocomplete="username"></div>
@@ -223,7 +223,7 @@
 <!-- SIDEBAR -->
 <div class="sidebar" id="sidebar">
   <div class="sidebar-logo">
-    <div class="brand">Dream Homes</div>
+    <div class="brand">Jaipur PrimeEstate</div>
     <div class="sub">Property Manager</div>
     <div class="badge">ADMIN</div>
   </div>
@@ -619,7 +619,7 @@ function saveBlog(status) {
     id:+document.getElementById('editBlogId').value||Date.now(),
     title,category,status,
     excerpt,content,tags,
-    author:document.getElementById('b-author').value.trim()||'Jaipur Dream Homes',
+    author:document.getElementById('b-author').value.trim()||'Jaipur PrimeEstate',
     date:document.getElementById('b-date').value.trim()||new Date().toLocaleDateString('en-IN',{month:'long',year:'numeric'}),
     readTime:document.getElementById('b-readtime').value.trim()||'5 min read',
     img:document.getElementById('b-img').value.trim(),
