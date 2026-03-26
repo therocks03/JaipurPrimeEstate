@@ -1,4 +1,31 @@
 # JaipurPrimeEstate
+
+Pages & Sections
+
+Sticky navbar with dropdown Properties menu + mobile hamburger
+Auto-sliding hero with 3 slides, dot navigation, and animated text
+Property search bar (type, location, budget filters)
+Stats counter (150+ properties, 8 years, 15 agents, 6 projects)
+Featured listing (RLB Pride) with specs and amenities
+6 property cards with images, prices, tags, and hover effects
+Agent profile (Mr. Gulshan Nama) with services
+"Why Choose Us" grid on dark background
+3 client testimonials
+Home Loan EMI Calculator — fully functional with slider
+Stamp Duty Calculator — with buyer type & location adjustments
+Contact form with success message
+3 blog post cards
+Footer with all links and contact info
+
+Features
+
+Scroll-triggered fade-in animations throughout
+Count-up animation on stats
+Floating WhatsApp + Call buttons
+Fully responsive (mobile/tablet/desktop)
+All calculators work in real-time
+Warm gold + deep brown color scheme fitting Jaipur's royal aesthetic 
+
 Here's your complete Admin Panel! Here's everything included:
 🔐 Login Screen
 
