@@ -995,7 +995,7 @@
     </li>
     <li><a href="#agent">About</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#blog">Blog</a></li>
+    <li><a href="blog.html">Blog</a></li>
     <li><a href="#calculators">Calculators</a></li>
     <li><a href="tel:+917054133390" class="nav-cta">📞 Call Now</a></li>
   </ul>
@@ -1577,6 +1577,7 @@
 </section>
 
 <!-- BLOG -->
+<!-- BLOG -->
 <section class="blog" id="blog">
   <div class="blog-header fade-in">
     <div>
@@ -1586,45 +1587,41 @@
     </div>
     <a href="blog.html" class="btn-primary">All Articles</a>
   </div>
-  <div class="blog-grid">
-    <div class="blog-card fade-in">
-      <div class="blog-img"><img src="https://images.unsplash.com/photo-1565402170291-8491f14678db?w=600&q=80" alt="JDA Plots" loading="lazy"></div>
-      <div class="blog-body">
-        <div class="blog-cat">Real Estate Tips</div>
-        <div class="blog-title">Why JDA Approved Plots are the Safest Investment in Jaipur</div>
-        <div class="blog-excerpt">Understanding the importance of JDA approval and how it protects your property investment from future government action…</div>
-      </div>
-      <div class="blog-footer">
-        <span class="blog-date">March 2025</span>
-        <a href="blog.html?id=x" class="blog-link">Read More →</a>
-      </div>
-    </div>
-    <div class="blog-card fade-in">
-      <div class="blog-img"><img src="https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?w=600&q=80" alt="Residential Plots" loading="lazy"></div>
-      <div class="blog-body">
-        <div class="blog-cat">Market Trends</div>
-        <div class="blog-title">Top 5 Locations to Buy Residential Plots Near Mahindra SEZ Jaipur</div>
-        <div class="blog-excerpt">Explore the fastest growing corridors near the Mahindra SEZ and why they represent excellent value right now…</div>
-      </div>
-      <div class="blog-footer">
-        <span class="blog-date">February 2025</span>
-        <a href="#blog" class="blog-link">Read More →</a>
-      </div>
-    </div>
-    <div class="blog-card fade-in">
-      <div class="blog-img"><img src="https://images.unsplash.com/photo-1503551723145-6c040742065b?w=600&q=80" alt="Home Loan" loading="lazy"></div>
-      <div class="blog-body">
-        <div class="blog-cat">Finance Guide</div>
-        <div class="blog-title">How to Get a Home Loan for Buying a Plot in Jaipur in 2025</div>
-        <div class="blog-excerpt">Step-by-step guide to securing a home loan for residential plots in Jaipur — eligibility, documents, and top banks…</div>
-      </div>
-      <div class="blog-footer">
-        <span class="blog-date">January 2025</span>
-        <a href="#blog" class="blog-link">Read More →</a>
-      </div>
-    </div>
+  <div class="blog-grid" id="homeBlogGrid">
+    <!-- Filled dynamically from localStorage -->
   </div>
 </section>
+<script>
+(function() {
+  const defaultPosts = [
+    { id: 1, title: 'Why JDA Approved Plots are the Safest Investment in Jaipur', category: 'Real Estate Tips', excerpt: 'Understanding the importance of JDA approval and how it protects your property investment from future government action…', date: 'March 2025', img: 'https://images.unsplash.com/photo-1565402170291-8491f14678db?w=600&q=80', status: 'published' },
+    { id: 2, title: 'Top 5 Locations to Buy Residential Plots Near Mahindra SEZ Jaipur', category: 'Market Trends', excerpt: 'Explore the fastest growing corridors near the Mahindra SEZ and why they represent excellent value right now…', date: 'February 2025', img: 'https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?w=600&q=80', status: 'published' },
+    { id: 3, title: 'How to Get a Home Loan for Buying a Plot in Jaipur in 2025', category: 'Finance Guide', excerpt: 'Step-by-step guide to securing a home loan for residential plots in Jaipur — eligibility, documents, and top banks…', date: 'January 2025', img: 'https://images.unsplash.com/photo-1503551723145-6c040742065b?w=600&q=80', status: 'published' }
+  ];
+  if (!localStorage.getItem('jdh_blogs')) {
+    localStorage.setItem('jdh_blogs', JSON.stringify(defaultPosts));
+  }
+  const posts = JSON.parse(localStorage.getItem('jdh_blogs') || '[]')
+    .filter(p => p.status === 'published')
+    .sort((a,b) => b.id - a.id)
+    .slice(0, 3);
+  const grid = document.getElementById('homeBlogGrid');
+  if (!posts.length) { grid.innerHTML = '<p style="color:var(--muted);text-align:center;padding:40px;grid-column:1/-1">No blog posts yet.</p>'; return; }
+  grid.innerHTML = posts.map(p => `
+    <div class="blog-card fade-in">
+      <div class="blog-img"><img src="${p.img || 'https://images.unsplash.com/photo-1565402170291-8491f14678db?w=600&q=80'}" alt="${p.title}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1565402170291-8491f14678db?w=600&q=80'"></div>
+      <div class="blog-body">
+        <div class="blog-cat">${p.category || 'General'}</div>
+        <div class="blog-title">${p.title}</div>
+        <div class="blog-excerpt">${p.excerpt || ''}</div>
+      </div>
+      <div class="blog-footer">
+        <span class="blog-date">${p.date || ''}</span>
+        <a href="blog.html?id=${p.id}" class="blog-link">Read More →</a>
+      </div>
+    </div>`).join('');
+})();
+</script>
 
 <!-- FOOTER -->
 <footer>
