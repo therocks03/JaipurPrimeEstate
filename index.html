@@ -1802,5 +1802,28 @@
     nav.style.boxShadow = window.scrollY > 20 ? '0 4px 30px rgba(0,0,0,0.1)' : '0 2px 20px rgba(0,0,0,0.06)';
   });
 </script>
+  <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('form');
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        const name = document.querySelector('input[name="name"]').value;
+        const phone = document.querySelector('input[type="tel"]').value;
+        const email = document.querySelector('input[type="email"]').value;
+        const interested = document.querySelector('select[name="interested"]').value;
+        const message = document.querySelector('textarea[name="message"]').value;
+        
+        let msg = `*New Enquiry - Jaipur PrimeEstate*\n\n`;
+        msg += `*Name:* ${name}\n*Phone:* ${phone}\n`;
+        if(email) msg += `*Email:* ${email}\n`;
+        if(interested) msg += `*Interested In:* ${interested}\n`;
+        if(message) msg += `*Message:* ${message}`;
+        
+        window.open(`https://wa.me/917054133390?text=${encodeURIComponent(msg)}`, '_blank');
+        form.reset();
+    });
+});
+</script>
 </body>
 </html>
