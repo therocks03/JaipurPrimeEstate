@@ -1499,83 +1499,283 @@
 </section>
 
 <!-- CONTACT -->
+<!-- ========================================
+     COMPLETE CONTACT SECTION WITH WHATSAPP
+     Copy this entire section and REPLACE your existing contact section
+     ======================================== -->
+
 <section class="contact" id="contact">
-  <div class="contact-inner">
-    <div class="fade-in">
-      <span class="section-tag">Get in Touch</span>
-      <h2 class="section-title">Talk to Our <em>Experts</em></h2>
-      <div class="divider"></div>
-      <p class="section-sub" style="margin-bottom:32px">Visit us or reach out — we'll guide you to the perfect property in Jaipur.</p>
-
-      <div class="contact-detail">
-        <div class="contact-icon">📍</div>
-        <div class="contact-detail-text">
-          <strong>Office Address</strong>
-          <span>Amrapali Circle, Vaishali Nagar, Jaipur, Rajasthan – 302021</span>
+    <div class="container">
+        <div class="section-header">
+            <span class="section-label">Get in Touch</span>
+            <h2>Talk to Our <em>Experts</em></h2>
         </div>
-      </div>
-      <div class="contact-detail">
-        <div class="contact-icon">📞</div>
-        <div class="contact-detail-text">
-          <strong>Phone / WhatsApp</strong>
-          <span><a href="tel:+917054133390">+91 7054133390</a> · <a href="tel:+918058362663">+91 8058362663</a></span>
+        
+        <div class="contact-grid">
+            <!-- LEFT: Contact Information -->
+            <div class="contact-info">
+                <p class="contact-intro">Visit us or reach out — we'll guide you to the perfect property in Jaipur.</p>
+                
+                <div class="info-list">
+                    <div class="info-item">
+                        <div class="info-icon">📍</div>
+                        <div class="info-content">
+                            <h4>Office Address</h4>
+                            <p>Amrapali Circle, Vaishali Nagar, Jaipur, Rajasthan – 302021</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">📞</div>
+                        <div class="info-content">
+                            <h4>Phone / WhatsApp</h4>
+                            <p>
+                                <a href="tel:+917054133390">+91 7054133390</a> · 
+                                <a href="tel:+918058362663">+91 8058362663</a>
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">✉️</div>
+                        <div class="info-content">
+                            <h4>Email</h4>
+                            <p><a href="mailto:info@jaipurPrimeEstate.com">info@jaipurPrimeEstate.com</a></p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">🕐</div>
+                        <div class="info-content">
+                            <h4>Working Hours</h4>
+                            <p>Mon – Sat: 9:00 AM – 7:00 PM<br>Sun: 10:00 AM – 4:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- RIGHT: Contact Form -->
+            <div class="contact-form-container">
+                <form id="enquiryForm" class="enquiry-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Your Name <span class="required">*</span></label>
+                            <input 
+                                type="text" 
+                                id="name" 
+                                name="name" 
+                                placeholder="Ramesh Kumar"
+                                required
+                            >
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number <span class="required">*</span></label>
+                            <input 
+                                type="tel" 
+                                id="phone" 
+                                name="phone" 
+                                placeholder="+91 98765 43210"
+                                pattern="[0-9]{10}"
+                                required
+                            >
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            placeholder="you@example.com"
+                        >
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="interested">Interested In</label>
+                        <select id="interested" name="interested">
+                            <option value="">Select Project</option>
+                            <option value="RLB Pride Plots">RLB Pride Plots</option>
+                            <option value="Balaji Green 2 City">Balaji Green 2 City</option>
+                            <option value="Unnati Shiv Vilas">Unnati Shiv Vilas</option>
+                            <option value="Golden Valley">Golden Valley</option>
+                            <option value="Hanuman Nagar Plots">Hanuman Nagar Plots</option>
+                            <option value="Govind Aardhaye Plots">Govind Aardhaye Plots</option>
+                            <option value="Other / Not decided">Other / Not decided</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea 
+                            id="message" 
+                            name="message" 
+                            rows="4"
+                            placeholder="I'm interested in knowing more about..."
+                        ></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">
+                        Send Enquiry →
+                    </button>
+                </form>
+                
+                <div id="successMessage" class="success-message" style="display: none;">
+                    ✅ Thank you! We'll contact you within 24 hours.
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="contact-detail">
-        <div class="contact-icon">✉️</div>
-        <div class="contact-detail-text">
-          <strong>Email</strong>
-          <span><a href="mailto:info@jaipurdreamhomes.com">info@jaipurPrimeEstate.com></span>
-        </div>
-      </div>
-      <div class="contact-detail">
-        <div class="contact-icon">🕐</div>
-        <div class="contact-detail-text">
-          <strong>Working Hours</strong>
-          <span>Mon – Sat: 9:00 AM – 7:00 PM &nbsp;|&nbsp; Sun: 10:00 AM – 4:00 PM</span>
-        </div>
-      </div>
     </div>
-
-    <div class="fade-in">
-      <form id="contactForm" onsubmit="handleContact(event)">
-        <div class="form-row">
-          <div class="form-field">
-            <label>Your Name *</label>
-            <input type="text" placeholder="Ramesh Kumar" required>
-          </div>
-          <div class="form-field">
-            <label>Phone Number *</label>
-            <input type="tel" placeholder="+91 98765 43210" required>
-          </div>
-        </div>
-        <div class="form-field">
-          <label>Email Address</label>
-          <input type="email" placeholder="you@example.com">
-        </div>
-        <div class="form-field">
-          <label>Interested In</label>
-          <select>
-            <option>RLB Pride Plots</option>
-            <option>Balaji Green 2 City</option>
-            <option>Unnati Shiv Vilas</option>
-            <option>Golden Valley</option>
-            <option>Hanuman Nagar Plots</option>
-            <option>Govind Aardhaye Plots</option>
-            <option>Other / Not decided</option>
-          </select>
-        </div>
-        <div class="form-field">
-          <label>Message</label>
-          <textarea rows="4" placeholder="I'm interested in knowing more about…"></textarea>
-        </div>
-        <button type="submit" class="btn-primary" style="width:100%">Send Enquiry →</button>
-        <div class="form-success" id="formSuccess">✅ Thank you! We'll contact you within 24 hours.</div>
-      </form>
-    </div>
-  </div>
 </section>
 
+<!-- ========================================
+     WHATSAPP INTEGRATION SCRIPT
+     Add this before the closing </body> tag
+     ======================================== -->
+<script>
+(function() {
+    'use strict';
+    
+    // Wait for DOM to be fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('enquiryForm');
+        const successMessage = document.getElementById('successMessage');
+        
+        if (!form) {
+            console.error('Enquiry form not found!');
+            return;
+        }
+        
+        // Form submission handler
+        form.addEventListener('submit', function(event) {
+            // Prevent default form submission
+            event.preventDefault();
+            event.stopPropagation();
+            
+            console.log('Form submitted!');
+            
+            // Get form values
+            const formData = {
+                name: document.getElementById('name').value.trim(),
+                phone: document.getElementById('phone').value.trim(),
+                email: document.getElementById('email').value.trim(),
+                interested: document.getElementById('interested').value,
+                message: document.getElementById('message').value.trim()
+            };
+            
+            // Validate required fields
+            if (!formData.name || !formData.phone) {
+                alert('Please fill in all required fields (Name and Phone Number)');
+                return false;
+            }
+            
+            // Format WhatsApp message
+            let whatsappMessage = '*New Enquiry - Jaipur PrimeEstate*\n\n';
+            whatsappMessage += `*Name:* ${formData.name}\n`;
+            whatsappMessage += `*Phone:* ${formData.phone}\n`;
+            
+            if (formData.email) {
+                whatsappMessage += `*Email:* ${formData.email}\n`;
+            }
+            
+            if (formData.interested) {
+                whatsappMessage += `*Interested In:* ${formData.interested}\n`;
+            }
+            
+            if (formData.message) {
+                whatsappMessage += `*Message:* ${formData.message}\n`;
+            }
+            
+            // Encode message for URL
+            const encodedMessage = encodeURIComponent(whatsappMessage);
+            
+            // WhatsApp number (India country code: 91)
+            const whatsappNumber = '917054133390';
+            
+            // Create WhatsApp URL
+            const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+            
+            console.log('Opening WhatsApp with message:', whatsappMessage);
+            
+            // Open WhatsApp in new window
+            const whatsappWindow = window.open(whatsappURL, '_blank');
+            
+            if (!whatsappWindow) {
+                alert('Please allow popups to send enquiry via WhatsApp');
+                return false;
+            }
+            
+            // Show success message
+            if (successMessage) {
+                successMessage.style.display = 'block';
+                
+                // Hide success message after 5 seconds
+                setTimeout(function() {
+                    successMessage.style.display = 'none';
+                }, 5000);
+            }
+            
+            // Reset form
+            form.reset();
+            
+            return false;
+        });
+        
+        console.log('WhatsApp form integration loaded successfully!');
+    });
+})();
+</script>
+
+<style>
+/* Success Message Styling */
+.success-message {
+    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+    color: white;
+    padding: 16px 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+    text-align: center;
+    font-weight: 500;
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Ensure form elements are clickable */
+.enquiry-form input,
+.enquiry-form select,
+.enquiry-form textarea,
+.enquiry-form button {
+    position: relative;
+    z-index: 10;
+    pointer-events: auto;
+}
+
+.submit-btn {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+</style>
 <!-- BLOG -->
 <!-- BLOG -->
 <section class="blog" id="blog">
@@ -1679,7 +1879,7 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <span>© 2025 Jaipur PrimeEstate. All rights reserved.</span>
+    <span>© 2026 Jaipur PrimeEstate. All rights reserved.</span>
     <span><a href="#contact">Privacy Policy</a> · <a href="#contact">Terms of Use</a> · Designed with ♥ in Jaipur</span>
   </div>
 </footer>
