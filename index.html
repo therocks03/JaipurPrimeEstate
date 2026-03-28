@@ -2273,6 +2273,160 @@
   
 })();
 </script>
-
+<!-- PROPERTIES LOADER - ADD THIS BEFORE </body> -->
+<script>
+(function() {
+  'use strict';
+  
+  // Wait for page to load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+  
+  function init() {
+    console.log('Properties Loader Starting...');
+    
+    // Load properties from localStorage
+    let properties = [];
+    try {
+      const stored = localStorage.getItem('properties');
+      properties = stored ? JSON.parse(stored) : [];
+      console.log('Found', properties.length, 'properties in localStorage');
+    } catch (e) {
+      console.error('Error loading properties:', e);
+      return;
+    }
+    
+    // Filter active properties
+    const activeProperties = properties.filter(p => 
+      p.status === 'Available' || p.status === '🔥 Hot Deal'
+    );
+    
+    console.log('Active properties:', activeProperties.length);
+    
+    if (activeProperties.length === 0) {
+      console.log('No active properties to display');
+      return;
+    }
+    
+    // Find the properties section by looking for common patterns
+    const possibleSelectors = [
+      '.properties-grid',
+      '#properties .grid',
+      '#properties .properties-grid',
+      'section#properties .grid',
+      '.property-grid',
+      '.properties-container',
+      '[class*="properties"] [class*="grid"]',
+      '[class*="property"] [class*="grid"]'
+    ];
+    
+    let gridContainer = null;
+    for (const selector of possibleSelectors) {
+      gridContainer = document.querySelector(selector);
+      if (gridContainer) {
+        console.log('Found grid container using:', selector);
+        break;
+      }
+    }
+    
+    // If still not found, look for any div with multiple property cards
+    if (!gridContainer) {
+      const allDivs = document.querySelectorAll('div');
+      for (const div of allDivs) {
+        const cards = div.querySelectorAll('.property-card, [class*="property-card"]');
+        if (cards.length >= 3) {
+          gridContainer = div;
+          console.log('Found grid container with', cards.length, 'property cards');
+          break;
+        }
+      }
+    }
+    
+    if (!gridContainer) {
+      console.error('Could not find properties grid container');
+      alert('Properties loaded but cannot find display area. Please check console.');
+      return;
+    }
+    
+    console.log('Rendering properties to grid...');
+    
+    // Generate property cards HTML
+    const cardsHTML = activeProperties.map(property => {
+      const badge = property.tag || property.status || 'Available';
+      const imageUrl = property.imageUrl || 'https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=600&q=80';
+      
+      return `
+        <div class="property-card" style="background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.08); transition: transform 0.3s;">
+          <a href="#contact" style="text-decoration: none; color: inherit; display: block;">
+            <div class="card-image" style="position: relative; overflow: hidden; height: 250px;">
+              <img src="${imageUrl}" 
+                   alt="${property.name}" 
+                   style="width: 100%; height: 100%; object-fit: cover;"
+                   onerror="this.src='https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=600&q=80'">
+              <span class="badge" style="position: absolute; top: 15px; left: 15px; background: ${property.status === '🔥 Hot Deal' ? '#ef4444' : '#10b981'}; color: white; padding: 0.4rem 1rem; border-radius: 50px; font-size: 0.85rem; font-weight: 600;">
+                ${badge}
+              </span>
+            </div>
+            <div class="card-content" style="padding: 1.5rem;">
+              <p class="price" style="color: #667eea; font-weight: 700; font-size: 1.3rem; margin: 0 0 0.5rem 0;">
+                ${property.price}
+              </p>
+              <p class="location" style="color: #999; font-size: 0.9rem; margin: 0 0 0.8rem 0;">
+                ${property.location}
+              </p>
+              <h3 style="font-size: 1.3rem; font-weight: 700; margin: 0 0 0.8rem 0; color: #1f2937;">
+                ${property.name}
+              </h3>
+              <p class="desc" style="color: #666; font-size: 0.95rem; line-height: 1.6; margin: 0 0 1rem 0;">
+                ${property.description ? property.description.substring(0, 100) + '...' : ''}
+              </p>
+              <div class="meta" style="display: flex; gap: 1rem; font-size: 0.85rem; color: #999; margin-bottom: 1rem;">
+                <span>📐 ${property.plotSize || 'Contact for size'}</span>
+                <span>🏘️ ${property.type || 'Residential'}</span>
+              </div>
+              <span class="arrow" style="color: #667eea; font-size: 1.5rem; font-weight: 600;">→</span>
+            </div>
+          </a>
+        </div>
+      `;
+    }).join('');
+    
+    // Replace the grid content
+    gridContainer.innerHTML = cardsHTML;
+    
+    // Update property counts
+    const countElements = document.querySelectorAll('.stat-number, [data-property-count]');
+    countElements.forEach(el => {
+      el.textContent = activeProperties.length;
+    });
+    
+    console.log('✅ Properties rendered successfully!');
+    
+    // Add hover effects
+    const style = document.createElement('style');
+    style.textContent = `
+      .property-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15) !important;
+      }
+    `;
+    document.head.appendChild(style);
+  }
+  
+  // Listen for storage changes (when admin updates properties)
+  window.addEventListener('storage', function(e) {
+    if (e.key === 'properties') {
+      console.log('Properties updated, reloading...');
+      init();
+    }
+  });
+  
+})();
+</script>
+</body>
+</html>
 </body>
 </html>
