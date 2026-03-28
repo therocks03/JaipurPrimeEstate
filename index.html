@@ -422,6 +422,60 @@
   .amenity::before { content: '✓'; color: var(--gold); font-weight: 700; font-size: 12px; }
 
   /* ===== PROPERTIES GRID ===== */
+  /* Fix for Properties Section Links */
+#properties .property-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+#properties .property-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+
+#properties .property-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+#properties .property-card a {
+  color: #2c3e50 !important;
+  text-decoration: none;
+  display: block;
+}
+
+#properties .property-card h3 {
+  color: #2c3e50 !important;
+  font-size: 1.3rem;
+  margin: 15px;
+  font-weight: 600;
+}
+
+#properties .property-card p {
+  color: #555 !important;
+  margin: 0 15px 15px;
+  line-height: 1.6;
+}
+
+#properties .property-card .property-link {
+  display: inline-block;
+  margin: 15px;
+  padding: 10px 20px;
+  background: #e74c3c;
+  color: white !important;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: background 0.3s;
+}
+
+#properties .property-card .property-link:hover {
+  background: #c0392b;
+}
   .properties {
     padding: 80px 40px;
     background: var(--sand);
