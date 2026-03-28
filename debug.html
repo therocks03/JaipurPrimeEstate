@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Properties Debug Tool</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+        .status {
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            font-weight: 600;
+        }
+        .status.success { background: #d1fae5; color: #065f46; }
+        .status.error { background: #fee2e2; color: #991b1b; }
+        .status.warning { background: #fef3c7; color: #92400e; }
+        
+        button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 0.5rem 0.5rem 0.5rem 0;
+            transition: transform 0.2s;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+        button.danger {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+        }
+        button.success {
+            background: linear-gradient(135deg, #10b981, #059669);
+        }
+        
+        pre {
+            background: #1f2937;
+            color: #10b981;
+            padding: 1.5rem;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        .info-box {
+            background: #eff6ff;
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            border-left: 4px solid #3b82f6;
+        }
+        .step {
+            background: #f9fafb;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+            border-left: 3px solid #667eea;
+        }
+        .step h3 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 Properties Debug Tool</h1>
+        <p style="color: #666; margin-bottom: 2rem;">Use this tool to diagnose why properties aren't showing on your website.</p>
+        
+        <div id="statusBox"></div>
+        
+        <div style="margin: 2rem 0;">
+            <button onclick="checkProperties()">🔍 Check localStorage</button>
+            <button onclick="addTestProperty()" class="success">➕ Add Test Property</button>
+            <button onclick="clearProperties()" class="danger">🗑️ Clear All Properties</button>
+            <button onclick="window.location.href='index.html'">🏠 Go to Main Page</button>
+        </div>
+        
+        <div class="info-box">
+            <strong>📌 How to use this tool:</strong>
+            <ol style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                <li>Upload this file (debug.html) to your GitHub repo in the same folder as index.html</li>
+                <li>Access it at: <code>https://therocks03.github.io/JaipurPrimeEstate/debug.html</code></li>
+                <li>Click "Check localStorage" to see if properties are saved</li>
+                <li>Click "Add Test Property" to add a sample property</li>
+                <li>Go to your main page to see if it appears</li>
+            </ol>
+        </div>
+        
+        <pre id="output">Click "Check localStorage" to begin...</pre>
+        
+        <div class="step">
+            <h3>Step 1: Check if Data is Saved</h3>
+            <p>The "Check localStorage" button above will show you if properties are being saved properly.</p>
+        </div>
+        
+        <div class="step">
+            <h3>Step 2: Add a Test Property</h3>
+            <p>Click "Add Test Property" to add a sample property. Then check your main page.</p>
+        </div>
+        
+        <div class="step">
+            <h3>Step 3: Verify Same Domain</h3>
+            <p><strong>Current URL:</strong> <code id="currentUrl"></code></p>
+            <p><strong>Your admin should be:</strong> <code>https://therocks03.github.io/JaipurPrimeEstate/admin.html</code></p>
+            <p><strong>Your index should be:</strong> <code>https://therocks03.github.io/JaipurPrimeEstate/index.html</code></p>
+            <p style="margin-top: 0.5rem; color: #ef4444; font-weight: 600;">⚠️ If URLs don't match exactly, localStorage won't work!</p>
+        </div>
+    </div>
+
+    <script>
+        // Display current URL
+        document.getElementById('currentUrl').textContent = window.location.href;
+        
+        function showStatus(message, type) {
+            const statusBox = document.getElementById('statusBox');
+            statusBox.className = 'status ' + type;
+            statusBox.textContent = message;
+        }
+        
+        function checkProperties() {
+            const output = document.getElementById('output');
+            const stored = localStorage.getItem('properties');
+            
+            let result = '=== LOCALSTORAGE CHECK ===\n\n';
+            result += 'Current URL: ' + window.location.href + '\n\n';
+            
+            if (!stored) {
+                result += '❌ STATUS: NO PROPERTIES FOUND\n\n';
+                result += 'localStorage.getItem("properties") returned: null\n\n';
+                result += 'WHAT THIS MEANS:\n';
+                result += '- Properties are NOT being saved by the admin panel\n';
+                result += '- OR you\'re on a different domain than the admin\n';
+                result += '- OR localStorage was cleared\n\n';
+                result += 'NEXT STEPS:\n';
+                result += '1. Go to your admin panel\n';
+                result += '2. Add a property and click Save\n';
+                result += '3. Come back here and click "Check localStorage" again\n';
+                
+                showStatus('❌ No properties found in localStorage', 'error');
+            } else {
+                try {
+                    const parsed = JSON.parse(stored);
+                    
+                    result += '✅ STATUS: PROPERTIES FOUND!\n\n';
+                    result += 'Count: ' + parsed.length + ' properties\n\n';
+                    result += 'Active properties: ' + parsed.filter(p => 
+                        p.status === 'Available' || p.status === '🔥 Hot Deal'
+                    ).length + '\n\n';
+                    result += '=== PROPERTY DATA ===\n\n';
+                    result += JSON.stringify(parsed, null, 2);
+                    
+                    showStatus('✅ Found ' + parsed.length + ' properties in localStorage', 'success');
+                    
+                    // Additional check
+                    if (parsed.length === 0) {
+                        result += '\n\n⚠️ WARNING: Array is empty. No properties have been added yet.';
+                        showStatus('⚠️ Properties array exists but is empty', 'warning');
+                    } else {
+                        result += '\n\n✅ GOOD NEWS: Properties are saved correctly!';
+                        result += '\n\nIf they\'re not showing on your main page:';
+                        result += '\n1. Make sure you added the script to index.html';
+                        result += '\n2. Check browser console on index.html for errors';
+                        result += '\n3. Verify you\'re accessing index.html from the same URL domain';
+                    }
+                    
+                } catch (e) {
+                    result += '❌ ERROR PARSING DATA:\n\n';
+                    result += e.message + '\n\n';
+                    result += 'Raw data:\n' + stored.substring(0, 500);
+                    
+                    showStatus('❌ Data exists but is corrupted', 'error');
+                }
+            }
+            
+            output.textContent = result;
+        }
+        
+        function clearProperties() {
+            if (!confirm('Are you sure you want to delete ALL properties? This cannot be undone.')) {
+                return;
+            }
+            
+            localStorage.removeItem('properties');
+            showStatus('🗑️ All properties cleared', 'warning');
+            checkProperties();
+        }
+        
+        function addTestProperty() {
+            const testProp = {
+                id: 'test_' + Date.now(),
+                name: 'Debug Test Property',
+                location: 'Test Location, Jaipur',
+                price: '₹15,000/sq. yd.',
+                type: 'Residential Plot',
+                plotSize: '100-200 sq. yd.',
+                status: 'Available',
+                tag: 'Test Property',
+                description: 'This is a test property added by the debug tool to verify the system is working correctly. If you can see this on your main page, the integration is working!',
+                imageUrl: 'https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=600&q=80',
+                amenities: ['Gated Entry', 'Wide Roads', 'Water Supply'],
+                createdAt: new Date().toISOString()
+            };
+            
+            let properties = [];
+            const stored = localStorage.getItem('properties');
+            if (stored) {
+                try {
+                    properties = JSON.parse(stored);
+                } catch (e) {
+                    alert('Error: Existing data is corrupted. Clearing and starting fresh.');
+                    properties = [];
+                }
+            }
+            
+            properties.push(testProp);
+            localStorage.setItem('properties', JSON.stringify(properties));
+            
+            showStatus('✅ Test property added successfully!', 'success');
+            checkProperties();
+            
+            alert('✅ Test property added!\n\nNow:\n1. Go to your main page (index.html)\n2. Refresh it (Ctrl+F5)\n3. You should see "Debug Test Property"\n\nIf you don\'t see it, check the browser console (F12) for errors.');
+        }
+        
+        // Auto-check on load
+        window.onload = function() {
+            checkProperties();
+        };
+    </script>
+</body>
+</html>
