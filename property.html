@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="pageTitle">Property Details – Jaipur PrimeEstate</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C; --gold-light: #E8C96A; --gold-dark: #A07830;
+    --deep: #1A1208; --cream: #FAF6EE; --sand: #F0E8D6;
+    --text: #3A2E1E; --muted: #7A6A50; --white: #FFFFFF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); }
+
+  /* ===== TOPBAR ===== */
+  .topbar { background: var(--deep); color: #c8b88a; font-size: 12px; letter-spacing: 1px; text-align: center; padding: 8px 20px; }
+  .topbar a { color: var(--gold); text-decoration: none; }
+
+  /* ===== NAV ===== */
+  nav { position: sticky; top: 0; z-index: 1000; background: var(--white); border-bottom: 1px solid #e8dfc8; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; height: 68px; box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
+  .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .nav-logo .logo-icon { width: 42px; height: 42px; background: var(--deep); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+  .nav-logo .logo-icon img { width: auto; height: 100%; }
+  .nav-logo strong { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 600; color: var(--deep); }
+  .nav-logo span { font-size: 10px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; display: block; }
+  .nav-links { display: flex; align-items: center; gap: 0; list-style: none; }
+  .nav-links li a { display: block; padding: 24px 16px; font-size: 13px; font-weight: 500; color: var(--text); text-decoration: none; transition: color 0.2s; }
+  .nav-links li a:hover, .nav-links li a.active { color: var(--gold-dark); }
+  .nav-cta { background: var(--gold) !important; color: var(--deep) !important; font-weight: 700 !important; padding: 10px 22px !important; border-radius: 2px; }
+  .nav-hamburger { display: none; cursor: pointer; background: none; border: none; padding: 6px; }
+  .nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--deep); margin: 5px 0; }
+  @media(max-width:900px){ nav{padding:0 20px;} .nav-links{display:none;flex-direction:column;position:absolute;top:68px;left:0;right:0;background:var(--white);border-top:1px solid #e8dfc8;padding:10px 0;box-shadow:0 8px 24px rgba(0,0,0,.1);z-index:100;} .nav-links.open{display:flex;} .nav-links li a{padding:12px 24px;} .nav-hamburger{display:block;} }
+
+  /* ===== PROPERTY DETAIL ===== */
+  .property-wrap { max-width: 1000px; margin: 0 auto; padding: 56px 40px 80px; }
+  .property-back { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); cursor: pointer; background: none; border: none; font-family: 'DM Sans', sans-serif; padding: 0; margin-bottom: 32px; transition: color 0.2s; }
+  .property-back:hover { color: var(--gold-dark); }
+
+  .property-header { margin-bottom: 32px; }
+  .property-tag { display: inline-block; background: rgba(201,168,76,0.15); border: 1px solid var(--gold); color: var(--gold-dark); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; padding: 5px 16px; margin-bottom: 12px; font-weight: 700; }
+  .property-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(32px, 4vw, 48px); font-weight: 500; color: var(--deep); line-height: 1.2; margin-bottom: 12px; }
+  .property-location { font-size: 15px; color: var(--muted); margin-bottom: 20px; display: flex; align-items: center; gap: 6px; }
+  .property-price { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 600; color: var(--gold-dark); margin-bottom: 24px; }
+
+  /* Social Share */
+  .share-section { display: flex; align-items: center; gap: 12px; padding-bottom: 24px; border-bottom: 1px solid var(--sand); margin-bottom: 32px; }
+  .share-label { font-size: 13px; color: var(--muted); font-weight: 500; }
+  .share-buttons { display: flex; gap: 10px; }
+  .share-btn { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 16px; transition: transform 0.2s, box-shadow 0.2s; border: none; cursor: pointer; }
+  .share-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+  .share-btn.whatsapp { background: #25D366; color: white; }
+  .share-btn.facebook { background: #1877F2; color: white; }
+  .share-btn.twitter { background: #1DA1F2; color: white; }
+  .share-btn.linkedin { background: #0A66C2; color: white; }
+  .share-btn.copy { background: var(--sand); color: var(--text); }
+
+  /* Image Gallery */
+  .property-gallery { margin-bottom: 40px; }
+  .main-image { width: 100%; height: 500px; object-fit: cover; display: block; margin-bottom: 12px; }
+  .thumbnail-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .thumbnail { width: 100%; height: 120px; object-fit: cover; display: block; cursor: pointer; transition: opacity 0.2s; }
+  .thumbnail:hover { opacity: 0.7; }
+
+  /* Property Details Grid */
+  .details-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; margin-bottom: 40px; }
+  .detail-section { background: var(--white); padding: 28px; }
+  .detail-section h2 { font-family: 'Cormorant Garamond', serif; font-size: 24px; color: var(--deep); margin-bottom: 16px; }
+  .detail-section p { font-size: 15px; line-height: 1.75; color: var(--text); margin-bottom: 12px; }
+  .detail-list { list-style: none; }
+  .detail-list li { font-size: 15px; color: var(--text); padding: 10px 0; border-bottom: 1px solid var(--sand); display: flex; justify-content: space-between; align-items: center; }
+  .detail-list li:last-child { border-bottom: none; }
+  .detail-list li strong { color: var(--deep); font-weight: 600; }
+  .detail-list li span { color: var(--muted); }
+
+  /* Amenities */
+  .amenities-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .amenity-item { display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--text); }
+  .amenity-item::before { content: '✓'; color: var(--gold-dark); font-weight: 700; font-size: 16px; }
+
+  /* CTA Box */
+  .property-cta { background: var(--deep); padding: 40px; text-align: center; margin: 40px 0; }
+  .property-cta h3 { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: var(--white); margin-bottom: 10px; }
+  .property-cta p { color: rgba(255,255,255,0.6); font-size: 15px; margin-bottom: 24px; }
+  .cta-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .cta-btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; font-size: 13px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; text-decoration: none; border-radius: 2px; transition: 0.2s; }
+  .cta-btn.primary { background: var(--gold); color: var(--deep); }
+  .cta-btn.primary:hover { background: var(--gold-light); }
+  .cta-btn.secondary { background: transparent; color: var(--white); border: 2px solid var(--white); }
+  .cta-btn.secondary:hover { background: var(--white); color: var(--deep); }
+
+  /* Related Properties */
+  .related-properties { margin-top: 56px; padding-top: 40px; border-top: 2px solid var(--sand); }
+  .related-properties h3 { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: var(--deep); margin-bottom: 28px; }
+  .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .related-card { background: var(--white); overflow: hidden; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; text-decoration: none; display: block; }
+  .related-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(0,0,0,0.1); }
+  .related-card img { width: 100%; height: 160px; object-fit: cover; display: block; }
+  .related-card-body { padding: 16px; }
+  .related-card-tag { font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold-dark); font-weight: 700; margin-bottom: 6px; }
+  .related-card-title { font-family: 'Cormorant Garamond', serif; font-size: 17px; color: var(--deep); line-height: 1.3; margin-bottom: 6px; }
+  .related-card-price { font-size: 15px; color: var(--gold-dark); font-weight: 700; }
+
+  /* ===== FOOTER ===== */
+  footer { background: var(--deep); color: rgba(255,255,255,0.5); padding: 48px 40px 0; }
+  .footer-bottom { max-width: 1160px; margin: 0 auto; padding: 20px 0; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-size: 12px; border-top: 1px solid rgba(255,255,255,0.08); }
+  .footer-top { max-width: 1160px; margin: 0 auto; padding-bottom: 40px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+  .footer-brand strong { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: var(--white); display: block; margin-bottom: 6px; }
+  .footer-brand p { font-size: 13px; color: rgba(255,255,255,0.4); }
+  .footer-links-row { display: flex; gap: 24px; flex-wrap: wrap; }
+  .footer-links-row a { font-size: 13px; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
+  .footer-links-row a:hover { color: var(--gold); }
+  .footer-bottom a { color: var(--gold); text-decoration: none; }
+
+  /* Floating CTA */
+  .floating-cta { position: fixed; bottom: 28px; right: 28px; z-index: 999; display: flex; flex-direction: column; gap: 12px; }
+  .fab { width: 54px; height: 54px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; text-decoration: none; box-shadow: 0 4px 20px rgba(0,0,0,0.2); transition: transform 0.2s; }
+  .fab:hover { transform: scale(1.1); }
+  .fab-call { background: var(--gold); color: var(--deep); }
+  .fab-wa { background: #25D366; color: white; }
+
+  @media(max-width:900px){ 
+    .property-wrap{padding:40px 20px;} 
+    .details-grid{grid-template-columns:1fr;} 
+    .related-grid{grid-template-columns:1fr 1fr;} 
+    .main-image{height:300px;} 
+    .thumbnail-strip{grid-template-columns:repeat(2, 1fr);} 
+    .amenities-grid{grid-template-columns:1fr;}
+    .cta-buttons{flex-direction:column;}
+  }
+  @media(max-width:600px){ 
+    .property-wrap{padding:32px 16px;} 
+    .related-grid{grid-template-columns:1fr;} 
+    footer{padding:40px 16px 0;} 
+  }
+
+  .copy-notification {
+    position: fixed;
+    bottom: 100px;
+    right: 28px;
+    background: var(--deep);
+    color: var(--gold);
+    padding: 12px 20px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 500;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s, transform 0.3s;
+    pointer-events: none;
+    z-index: 1000;
+  }
+  .copy-notification.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">📞 Call for site visit: <a href="tel:+917054133390">+91 70541 33390</a> &nbsp;|&nbsp; Jaipur PrimeEstate – Your Trusted Real Estate Partner</div>
+
+<nav id="main-nav">
+  <a href="index.html" class="nav-logo">
+    <div class="logo-icon">
+      <img src="assets/JaipurPrimeEstate_Logo.png" alt="Logo" onerror="this.parentElement.innerHTML='<svg viewBox=\'0 0 24 24\' fill=\'none\'><path d=\'M3 9.5L12 3L21 9.5V20H15V14H9V20H3V9.5Z\' fill=\'#C9A84C\'/></svg>'">
+    </div>
+    <div>
+      <strong>Jaipur PrimeEstate</strong>
+      <span>Real Estate Partner</span>
+    </div>
+  </a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#properties" class="active">Properties</a></li>
+    <li><a href="index.html#agent">About</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="index.html#calculators">Calculators</a></li>
+    <li><a href="tel:+917054133390" class="nav-cta">📞 Call Now</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="property-wrap">
+  <button class="property-back" onclick="window.location.href='index.html#properties'">← Back to all properties</button>
+  
+  <div class="property-header">
+    <div class="property-tag" id="propTag"></div>
+    <h1 class="property-title" id="propTitle"></h1>
+    <div class="property-location" id="propLocation"></div>
+    <div class="property-price" id="propPrice"></div>
+  </div>
+
+  <!-- Social Share -->
+  <div class="share-section">
+    <div class="share-label">Share this property:</div>
+    <div class="share-buttons">
+      <button class="share-btn whatsapp" onclick="shareProperty('whatsapp')" title="Share on WhatsApp">💬</button>
+      <button class="share-btn facebook" onclick="shareProperty('facebook')" title="Share on Facebook">f</button>
+      <button class="share-btn twitter" onclick="shareProperty('twitter')" title="Share on Twitter">𝕏</button>
+      <button class="share-btn linkedin" onclick="shareProperty('linkedin')" title="Share on LinkedIn">in</button>
+      <button class="share-btn copy" onclick="copyPropertyLink()" title="Copy link">🔗</button>
+    </div>
+  </div>
+
+  <!-- Image Gallery -->
+  <div class="property-gallery">
+    <img class="main-image" id="mainImage" src="" alt="">
+    <div class="thumbnail-strip" id="thumbnails"></div>
+  </div>
+
+  <!-- Property Details -->
+  <div class="details-grid">
+    <div class="detail-section">
+      <h2>Property Details</h2>
+      <ul class="detail-list" id="detailsList"></ul>
+    </div>
+    <div class="detail-section">
+      <h2>About This Property</h2>
+      <p id="propDescription"></p>
+      <div id="amenitiesSection"></div>
+    </div>
+  </div>
+
+  <!-- CTA Box -->
+  <div class="property-cta">
+    <h3>Interested in This Property?</h3>
+    <p>Schedule a site visit with our expert — Mr. Kedar Kholiya — for personalised guidance.</p>
+    <div class="cta-buttons">
+      <a href="https://wa.me/917054133390?text=Hi%2C%20I%20am%20interested%20in%20the%20property%20listing%20and%20would%20like%20to%20schedule%20a%20site%20visit" target="_blank" class="cta-btn primary">💬 WhatsApp Now</a>
+      <a href="tel:+917054133390" class="cta-btn secondary">📞 Call Us</a>
+      <a href="index.html#contact" class="cta-btn secondary">📝 Enquire Now</a>
+    </div>
+  </div>
+
+  <!-- Related Properties -->
+  <div class="related-properties">
+    <h3>Similar Properties</h3>
+    <div class="related-grid" id="relatedGrid"></div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <strong>Jaipur PrimeEstate</strong>
+      <p>Your trusted real estate partner in Jaipur. JDA & RERA approved plots.</p>
+    </div>
+    <div class="footer-links-row">
+      <a href="index.html">Home</a>
+      <a href="index.html#properties">Properties</a>
+      <a href="blog.html">Blog</a>
+      <a href="index.html#contact">Contact</a>
+      <a href="admin.html">Admin</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Jaipur PrimeEstate. All rights reserved.</span>
+    <span><a href="tel:+917054133390">+91 70541 33390</a></span>
+  </div>
+</footer>
+
+<div class="floating-cta">
+  <a href="tel:+917054133390" class="fab fab-call">📞</a>
+  <a href="https://wa.me/917054133390" class="fab fab-wa" target="_blank">💬</a>
+</div>
+
+<div class="copy-notification" id="copyNotification">Link copied to clipboard!</div>
+
+<script>
+// ===== HAMBURGER =====
+document.getElementById('hamburger').addEventListener('click', () => {
+  document.getElementById('nav-links').classList.toggle('open');
+});
+
+// ===== PROPERTY DATA =====
+// Load from localStorage (synced with admin panel)
+function getProperties() {
+  const stored = localStorage.getItem('jdh_properties');
+  if (stored) {
+    return JSON.parse(stored).filter(p => p.status === 'published' || p.status === 'active');
+  }
+  // Default properties if none exist
+  return DEFAULT_PROPERTIES;
+}
+
+const DEFAULT_PROPERTIES = [
+  {
+    id: 1,
+    name: 'RLB Pride Residential Plots',
+    location: '📍 Jaipur–Kota Highway',
+    tag: 'JDA Approved',
+    price: '₹14,950/yd',
+    priceNumeric: 14950,
+    size: '50–200 sq yd',
+    type: 'Residential',
+    status: 'published',
+    desc: 'Premium JDA-approved plots with modern infrastructure near Kota Highway corridor. These plots offer excellent connectivity to both Jaipur city center and the rapidly developing industrial zones. The colony features wide roads, underground electricity, and planned green spaces.',
+    img: 'https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=1200&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=1200&q=80',
+      'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1200&q=80',
+      'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80',
+      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1200&q=80'
+    ],
+    amenities: ['24/7 Security', 'Wide Roads', 'Underground Electricity', 'Water Supply', 'Street Lighting', 'Green Spaces', 'Gated Entry', 'Community Park'],
+    highlights: {
+      'Plot Sizes': '50–200 sq yd',
+      'Property Type': 'Residential Plots',
+      'Approval': 'JDA Approved',
+      'Price': '₹14,950 per sq yd',
+      'Possession': 'Immediate',
+      'Connectivity': '15 min to Jaipur Ring Road'
+    },
+    rera: 'RAJ/P/2024/001',
+    possession: 'Immediate'
+  },
+  {
+    id: 2,
+    name: 'Balaji Green 2 City',
+    location: '📍 Bhilwada Highway, Jaipur',
+    tag: 'RERA Approved',
+    price: '₹19,950/yd',
+    priceNumeric: 19950,
+    size: '60–500 sq yd',
+    type: 'Township',
+    status: 'published',
+    desc: 'Affordable township plots in a well-planned colony with full amenities and green landscape. This is a complete township development with schools, parks, and commercial areas planned within the complex. RERA registration ensures complete transparency and timely delivery.',
+    img: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80',
+      'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=1200&q=80',
+      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1200&q=80',
+      'https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=1200&q=80'
+    ],
+    amenities: ['Clubhouse', 'Swimming Pool', 'Kids Play Area', 'Jogging Track', 'Community Hall', 'Shopping Complex', 'School Zone', 'Temple'],
+    highlights: {
+      'Plot Sizes': '60–500 sq yd',
+      'Property Type': 'Township Plots',
+      'Approval': 'RERA Approved',
+      'Price': '₹19,950 per sq yd',
+      'Possession': '6 Months',
+      'Connectivity': '20 min to Mahindra SEZ'
+    }
+  }
+];
+
+// Initialize localStorage if empty
+if (!localStorage.getItem('jdh_properties')) {
+  localStorage.setItem('jdh_properties', JSON.stringify(DEFAULT_PROPERTIES));
+}
+
+const PROPERTIES = getProperties();
+
+// Get property ID from URL
+const urlParams = new URLSearchParams(window.location.search);
+const propertyId = parseInt(urlParams.get('id')) || 1;
+const property = PROPERTIES.find(p => p.id === propertyId);
+
+if (!property) {
+  window.location.href = 'index.html#properties';
+}
+
+// Populate property details
+function loadProperty() {
+  document.getElementById('pageTitle').textContent = `${property.name} – Jaipur PrimeEstate`;
+  document.getElementById('propTag').textContent = property.tag || 'Property';
+  document.getElementById('propTitle').textContent = property.name;
+  document.getElementById('propLocation').innerHTML = property.location;
+  document.getElementById('propPrice').textContent = property.price;
+  document.getElementById('propDescription').textContent = property.desc;
+
+  // Main image - use images array or fallback to img field
+  const mainImg = document.getElementById('mainImage');
+  const imageArray = property.images && property.images.length > 0 ? property.images : [property.img || 'https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=1200&q=80'];
+  mainImg.src = imageArray[0];
+  mainImg.alt = property.name;
+
+  // Thumbnails
+  const thumbContainer = document.getElementById('thumbnails');
+  thumbContainer.innerHTML = imageArray.map((img, idx) => 
+    `<img class="thumbnail" src="${img}" alt="${property.name} ${idx+1}" onclick="changeMainImage('${img}')">`
+  ).join('');
+
+  // Property highlights
+  const highlights = property.highlights || {
+    'Plot Sizes': property.size || 'Contact for details',
+    'Property Type': property.type || 'Residential',
+    'Approval': property.rera ? property.tag + ' - ' + property.rera : property.tag || 'Approved',
+    'Price': property.price,
+    'Possession': property.possession || 'Contact for details',
+    'Connectivity': 'Well Connected'
+  };
+  
+  const detailsList = document.getElementById('detailsList');
+  detailsList.innerHTML = Object.entries(highlights).map(([key, value]) => 
+    `<li><strong>${key}</strong> <span>${value}</span></li>`
+  ).join('');
+
+  // Amenities
+  if (property.amenities && property.amenities.length > 0) {
+    const amenitiesHtml = `
+      <h2 style="margin-top: 24px; margin-bottom: 12px; font-family: 'Cormorant Garamond', serif; font-size: 20px; color: var(--deep);">Amenities</h2>
+      <div class="amenities-grid">
+        ${property.amenities.map(a => `<div class="amenity-item">${a}</div>`).join('')}
+      </div>
+    `;
+    document.getElementById('amenitiesSection').innerHTML = amenitiesHtml;
+  }
+
+  // Related properties
+  loadRelatedProperties();
+}
+
+function changeMainImage(src) {
+  document.getElementById('mainImage').src = src;
+}
+
+function loadRelatedProperties() {
+  const related = PROPERTIES.filter(p => 
+    p.id !== propertyId && (p.type === property.type || p.tag === property.tag)
+  ).slice(0, 3);
+
+  const grid = document.getElementById('relatedGrid');
+  if (related.length === 0) {
+    grid.innerHTML = '<p style="color:var(--muted);font-size:14px;grid-column:1/-1">No similar properties available.</p>';
+    return;
+  }
+
+  grid.innerHTML = related.map(p => {
+    const propImg = p.images && p.images.length > 0 ? p.images[0] : (p.img || 'https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=600&q=80');
+    return `
+    <a href="property.html?id=${p.id}" class="related-card">
+      <img src="${propImg}" alt="${p.name}" onerror="this.src='https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=600&q=80'">
+      <div class="related-card-body">
+        <div class="related-card-tag">${p.tag}</div>
+        <div class="related-card-title">${p.name}</div>
+        <div class="related-card-price">${p.price}</div>
+      </div>
+    </a>
+  `}).join('');
+}
+
+// Social sharing functions
+function shareProperty(platform) {
+  const url = window.location.href;
+  const title = property.title;
+  const text = `Check out this property: ${title} at ${property.location}`;
+  
+  let shareUrl = '';
+  
+  switch(platform) {
+    case 'whatsapp':
+      shareUrl = `https://wa.me/?text=${encodeURIComponent(text + ' - ' + url)}`;
+      break;
+    case 'facebook':
+      shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+      break;
+    case 'twitter':
+      shareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`;
+      break;
+    case 'linkedin':
+      shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
+      break;
+  }
+  
+  if (shareUrl) {
+    window.open(shareUrl, '_blank', 'width=600,height=400');
+  }
+}
+
+function copyPropertyLink() {
+  const url = window.location.href;
+  
+  // Use modern clipboard API if available
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(url).then(() => {
+      showCopyNotification();
+    }).catch(() => {
+      // Fallback if clipboard API fails
+      fallbackCopy(url);
+    });
+  } else {
+    // Fallback for older browsers
+    fallbackCopy(url);
+  }
+}
+
+function fallbackCopy(text) {
+  const textArea = document.createElement('textarea');
+  textArea.value = text;
+  textArea.style.position = 'fixed';
+  textArea.style.left = '-999999px';
+  document.body.appendChild(textArea);
+  textArea.select();
+  try {
+    document.execCommand('copy');
+    showCopyNotification();
+  } catch (err) {
+    console.error('Failed to copy:', err);
+  }
+  document.body.removeChild(textArea);
+}
+
+function showCopyNotification() {
+  const notification = document.getElementById('copyNotification');
+  notification.classList.add('show');
+  setTimeout(() => {
+    notification.classList.remove('show');
+  }, 2000);
+}
+
+// Initialize
+loadProperty();
+</script>
+</body>
+</html>
