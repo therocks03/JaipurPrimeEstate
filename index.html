@@ -1976,149 +1976,83 @@
   });
 
   // ===== LOAD PROPERTIES FROM LOCALSTORAGE =====
-  function loadProperties() {
-    const storedProps = localStorage.getItem('jdh_properties');
-    let properties = [];
-    
-    if (storedProps) {
-      // Filter only published/active properties
-      properties = JSON.parse(storedProps).filter(p => 
-        p.status === 'published' || p.status === 'active'
-      );
-    }
-    
-    // If no properties in localStorage, use defaults
-    if (properties.length === 0) {
-      properties = [
-        {
-          id: 1,
-          name: 'RLB Pride Residential Plots',
-          location: 'Jaipur–Kota Highway',
-          tag: 'JDA Approved',
-          price: '₹14,950/yd',
-          size: '50–200 sq yd',
-          type: 'Residential',
-          desc: 'Premium JDA-approved plots with modern infrastructure near Kota Highway corridor.',
-          img: 'https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=600&q=80',
-          status: 'published'
-        },
-        {
-          id: 2,
-          name: 'Balaji Green 2 City',
-          location: 'Bhilwada Highway, Jaipur',
-          tag: 'RERA Approved',
-          price: '₹19,950/yd',
-          size: '60–500 sq yd',
-          type: 'Township',
-          desc: 'Affordable township plots in a well-planned colony with full amenities and green landscape.',
-          img: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&q=80',
-          status: 'published'
-        },
-        {
-          id: 3,
-          name: 'Unnati Shiv Vilas Township',
-          location: 'Jaipur North',
-          tag: 'Premium',
-          price: 'On Request',
-          size: '100–250 sq yd',
-          type: 'Gated Township',
-          desc: 'Premium gated township offering world-class amenities for a modern lifestyle in Jaipur.',
-          img: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&q=80',
-          status: 'published'
-        },
-        {
-          id: 4,
-          name: 'Golden Valley Plots',
-          location: 'Bhilwada Highway',
-          tag: 'Affordable',
-          price: 'Best Price',
-          size: '50–150 sq yd',
-          type: 'Residential',
-          desc: 'Budget-friendly residential plots in a rapidly developing corridor with excellent connectivity.',
-          img: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&q=80',
-          status: 'published'
-        },
-        {
-          id: 5,
-          name: 'Hanuman Nagar Plots',
-          location: 'Beelwa, Tonk Road',
-          tag: 'Beelwa Tonk Road',
-          price: 'Enquire',
-          size: '60–200 sq yd',
-          type: 'Residential',
-          desc: 'Strategically located plots on Tonk Road with excellent road and commercial connectivity.',
-          img: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=600&q=80',
-          status: 'published'
-        },
-        {
-          id: 6,
-          name: 'Govind Aardhaye JDA Plots',
-          location: 'Jaipur',
-          tag: 'JDA Plots',
-          price: 'Best Deal',
-          size: '50–250 sq yd',
-          type: 'JDA Plot',
-          desc: 'Legally sound JDA-approved plots with complete documentation and peaceful neighborhood.',
-          img: 'https://images.unsplash.com/photo-1523217582562-09d0def993a6?w=600&q=80',
-          status: 'published'
-        },
-        {
-          id: 7,
-          name: 'Vardan Meadow JDA Plots',
-          location: 'Jaipur',
-          tag: 'JDA Plots',
-          price: 'Best Deal',
-          size: '50–250 sq yd',
-          type: 'JDA Plot',
-          desc: 'Legally sound JDA-approved plots with complete documentation and peaceful neighborhood.',
-          img: 'https://images.unsplash.com/photo-1523217582562-09d0def993a6?w=600&q=80',
-          status: 'published'
-        }
-      ];
-      
-      // Save defaults to localStorage if empty
-      if (!storedProps) {
-        localStorage.setItem('jdh_properties', JSON.stringify(properties));
-      }
-    }
-    
-    // Render property cards
-    const grid = document.getElementById('propertyGrid');
-    if (!grid) return; // Exit if element doesn't exist
-    
-    if (properties.length === 0) {
-      grid.innerHTML = `
-        <div style="grid-column: 1/-1; text-align: center; padding: 60px 20px;">
-          <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 28px; color: var(--deep); margin-bottom: 12px;">No Properties Available</h3>
-          <p style="color: var(--muted); font-size: 15px;">Check back soon for new listings!</p>
-        </div>
-      `;
-      return;
-    }
-    
-    grid.innerHTML = properties.map(p => `
-      <a href="property.html?id=${p.id}" class="property-card fade-in">
-        <div class="card-img">
-          <img src="${p.img || 'https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=600&q=80'}" alt="${p.name}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=600&q=80'">
-          ${p.tag ? `<span class="card-tag">${p.tag}</span>` : ''}
-          <div class="card-price">${p.price}</div>
-        </div>
-        <div class="card-body">
-          <div class="card-location">${p.location}</div>
-          <div class="card-title">${p.name}</div>
-          <div class="card-desc">${p.desc || ''}</div>
-          <div class="card-footer">
-            <div class="card-details">
-              <div class="card-detail">Size: <span>${p.size || 'On Request'}</span></div>
-              <div class="card-detail">Type: <span>${p.type || 'Plot'}</span></div>
-            </div>
-            <div class="card-arrow">→</div>
-          </div>
-        </div>
-      </a>
-    `).join('');
+  // Replace the loadProperties function with this improved version:
+function loadProperties() {
+  const defaultProperties = [
+    {
+      id: 1,
+      name: 'RLB Pride Residential Plots',
+      location: 'Jaipur–Kota Highway',
+      tag: 'JDA Approved',
+      price: '₹14,950/yd',
+      size: '50–200 sq yd',
+      type: 'Residential',
+      desc: 'Premium JDA-approved plots with modern infrastructure near Kota Highway corridor.',
+      img: 'https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=600&q=80',
+      status: 'published'
+    },
+    // ... other default properties
+  ];
+
+  // Initialize localStorage if empty
+  if (!localStorage.getItem('jdh_properties')) {
+    localStorage.setItem('jdh_properties', JSON.stringify(defaultProperties));
   }
 
+  // Get properties from localStorage
+  let properties = [];
+  try {
+    const stored = localStorage.getItem('jdh_properties');
+    properties = JSON.parse(stored || '[]').filter(p => 
+      p.status === 'published' || 
+      p.status === 'active' || 
+      p.status === 'Available'
+    );
+  } catch (e) {
+    console.error('Error parsing properties:', e);
+    properties = defaultProperties;
+  }
+
+  // If no valid properties, use defaults
+  if (properties.length === 0) {
+    properties = defaultProperties;
+    localStorage.setItem('jdh_properties', JSON.stringify(defaultProperties));
+  }
+
+  // Render
+  const grid = document.getElementById('propertyGrid');
+  if (!grid) {
+    console.error('Property grid element not found');
+    return;
+  }
+  
+  grid.innerHTML = properties.map(p => `
+    <a href="property.html?id=${p.id}" class="property-card fade-in">
+      <div class="card-img">
+        <img src="${p.img || 'https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=600&q=80'}" 
+             alt="${p.name}" 
+             loading="lazy" 
+             onerror="this.src='https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=600&q=80'">
+        ${p.tag ? `<span class="card-tag">${p.tag}</span>` : ''}
+        <div class="card-price">${p.price}</div>
+      </div>
+      <div class="card-body">
+        <div class="card-location">${p.location}</div>
+        <div class="card-title">${p.name}</div>
+        <div class="card-desc">${p.desc || ''}</div>
+        <div class="card-footer">
+          <div class="card-details">
+            <div class="card-detail">Size: <span>${p.size || 'On Request'}</span></div>
+            <div class="card-detail">Type: <span>${p.type || 'Plot'}</span></div>
+          </div>
+          <div class="card-arrow">→</div>
+        </div>
+      </div>
+    </a>
+  `).join('');
+  
+  console.log(`✅ Loaded ${properties.length} properties`);
+}
   // Load properties when page loads
   loadProperties();
 </script>
