@@ -23,9 +23,9 @@
   nav { position: sticky; top: 0; z-index: 1000; background: var(--white); border-bottom: 1px solid #e8dfc8; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; height: 68px; box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
   .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
   .nav-logo .logo-icon { width: 42px; height: 42px; background: var(--deep); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-  .nav- .-icon img { width: auto; height: 100%; }
-  .nav- strong { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 600; color: var(--deep); }
-  .nav- span { font-size: 10px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; display: block; }
+  .nav-logo .logo-icon img { width: auto; height: 100%; }
+  .nav-logo strong { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 600; color: var(--deep); }
+  .nav-logo span { font-size: 10px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; display: block; }
   .nav-links { display: flex; align-items: center; gap: 0; list-style: none; }
   .nav-links li a { display: block; padding: 24px 16px; font-size: 13px; font-weight: 500; color: var(--text); text-decoration: none; transition: color 0.2s; }
   .nav-links li a:hover, .nav-links li a.active { color: var(--gold-dark); }
@@ -164,9 +164,9 @@
 <div class="topbar">📞 Call for site visit: <a href="tel:+917054133390">+91 70541 33390</a> &nbsp;|&nbsp; Jaipur PrimeEstate – Your Trusted Real Estate Partner</div>
 
 <nav id="main-nav">
-  <a href="index.html" class="nav-">
-    <div class="-icon">
-      <img src="assets/JaipurPrimeEstate_.png" alt="" onerror="this.parentElement.innerHTML='<svg viewBox=\'0 0 24 24\' fill=\'none\'><path d=\'M3 9.5L12 3L21 9.5V20H15V14H9V20H3V9.5Z\' fill=\'#C9A84C\'/></svg>'">
+  <a href="index.html" class="nav-logo">
+    <div class="logo-icon">
+      <img src="assets/JaipurPrimeEstate_Logo.png" alt="Logo" onerror="this.parentElement.innerHTML='<svg viewBox=\'0 0 24 24\' fill=\'none\'><path d=\'M3 9.5L12 3L21 9.5V20H15V14H9V20H3V9.5Z\' fill=\'#C9A84C\'/></svg>'">
     </div>
     <div>
       <strong>Jaipur PrimeEstate</strong>
@@ -370,27 +370,51 @@ function loadProperty() {
   document.getElementById('pageTitle').textContent = `${property.name} – Jaipur PrimeEstate`;
   document.getElementById('propTag').textContent = property.tag || 'Property';
   document.getElementById('propTitle').textContent = property.name;
-  document.getElementById('propLocation').innerHTML = property.location;
+  document.getElementById('propLocation').innerHTML = property.location.includes('📍') ? property.location : '📍 ' + property.location;
   document.getElementById('propPrice').textContent = property.price;
   document.getElementById('propDescription').textContent = property.desc;
 
   // Main image - use images array or fallback to img field
   const mainImg = document.getElementById('mainImage');
-  const imageArray = property.images && property.images.length > 0 ? property.images : [property.img || 'https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=1200&q=80'];
+  let imageArray = [];
+  
+  if (property.images && property.images.length > 0) {
+    imageArray = property.images;
+  } else if (property.img) {
+    // If only single image, create array with 4 copies for gallery
+    imageArray = [
+      property.img,
+      property.img,
+      property.img,
+      property.img
+    ];
+  } else {
+    // Fallback default images
+    imageArray = [
+      'https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=1200&q=80',
+      'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1200&q=80',
+      'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80',
+      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1200&q=80'
+    ];
+  }
+  
   mainImg.src = imageArray[0];
   mainImg.alt = property.name;
+  mainImg.onerror = function() {
+    this.src = 'https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=1200&q=80';
+  };
 
   // Thumbnails
   const thumbContainer = document.getElementById('thumbnails');
   thumbContainer.innerHTML = imageArray.map((img, idx) => 
-    `<img class="thumbnail" src="${img}" alt="${property.name} ${idx+1}" onclick="changeMainImage('${img}')">`
+    `<img class="thumbnail" src="${img}" alt="${property.name} ${idx+1}" onclick="changeMainImage('${img}')" onerror="this.src='https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=600&q=80'">`
   ).join('');
 
-  // Property highlights
+  // Property highlights - build from available data
   const highlights = property.highlights || {
     'Plot Sizes': property.size || 'Contact for details',
     'Property Type': property.type || 'Residential',
-    'Approval': property.rera ? property.tag + ' - ' + property.rera : property.tag || 'Approved',
+    'Approval': property.rera ? (property.tag || 'Approved') + ' - ' + property.rera : (property.tag || 'Approved'),
     'Price': property.price,
     'Possession': property.possession || 'Contact for details',
     'Connectivity': 'Well Connected'
