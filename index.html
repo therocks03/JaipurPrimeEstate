@@ -1137,6 +1137,16 @@
 
   <div class="property-grid" id="propertyGrid">
     <!-- Properties will be loaded dynamically from localStorage -->
+function getProperties() {
+  const stored = localStorage.getItem('jdh_properties');
+  if (stored) {
+    return JSON.parse(stored).filter(p => 
+      p.status === 'published' || p.status === 'active'
+    );
+  }
+  return DEFAULT_PROPERTIES;
+}
+
   </div>
 </section>
 
