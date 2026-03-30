@@ -199,13 +199,13 @@
     <a onclick="showPanel('dashboard')" data-panel="dashboard"><span class="nav-icon">📊</span> Dashboard</a>
     <a onclick="showPanel('list-prop')" data-panel="list-prop"><span class="nav-icon">🏠</span> Properties <span class="nav-badge" id="propCount">0</span></a>
     <a onclick="showPanel('add-prop');resetPropForm();" data-panel="add-prop"><span class="nav-icon">➕</span> Add Property</a>
-    <a onclick="showPanel('export-prop');generateExport();" data-panel="export-prop"><span class="nav-icon">📤</span> Export Properties</a>
+    <a onclick="showPanel('export-prop')" data-panel="export-prop"><span class="nav-icon">📤</span> Export Properties</a>
   </div>
   <div class="sidebar-section">Blog</div>
   <div class="sidebar-nav">
     <a onclick="showPanel('list-blog')" data-panel="list-blog"><span class="nav-icon">📰</span> Blog Posts <span class="nav-badge" id="blogCount">0</span></a>
     <a onclick="showPanel('write-blog');resetBlogForm();" data-panel="write-blog"><span class="nav-icon">✍️</span> Write Post</a>
-    <a onclick="showPanel('export-blog');generateBlogExport();" data-panel="export-blog"><span class="nav-icon">📤</span> Export Blog Posts</a>
+    <a onclick="showPanel('export-blog')" data-panel="export-blog"><span class="nav-icon">📤</span> Export Blog Posts</a>
   </div>
   <div style="flex:1"></div>
   <div class="sidebar-footer">
@@ -342,6 +342,40 @@
               <option value="New Listing">✨ New Listing</option>
               <option value="Price Drop">💰 Price Drop</option>
             </select>
+          </div>
+        </div>
+        
+        <div class="fsec">Amenities</div>
+        <div class="fg">
+          <label>Select Available Amenities</label>
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 10px;">
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; text-transform: none; cursor: pointer;">
+              <input type="checkbox" class="amenity-check" value="Swimming Pool"> Swimming Pool
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; text-transform: none; cursor: pointer;">
+              <input type="checkbox" class="amenity-check" value="Gym"> Gym
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; text-transform: none; cursor: pointer;">
+              <input type="checkbox" class="amenity-check" value="Garden"> Garden
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; text-transform: none; cursor: pointer;">
+              <input type="checkbox" class="amenity-check" value="Parking"> Parking
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; text-transform: none; cursor: pointer;">
+              <input type="checkbox" class="amenity-check" value="Security"> 24/7 Security
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; text-transform: none; cursor: pointer;">
+              <input type="checkbox" class="amenity-check" value="Power Backup"> Power Backup
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; text-transform: none; cursor: pointer;">
+              <input type="checkbox" class="amenity-check" value="Elevator"> Elevator
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; text-transform: none; cursor: pointer;">
+              <input type="checkbox" class="amenity-check" value="Club House"> Club House
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; text-transform: none; cursor: pointer;">
+              <input type="checkbox" class="amenity-check" value="Kids Play Area"> Kids Play Area
+            </label>
           </div>
         </div>
         
@@ -550,6 +584,8 @@ function showPanel(id){
   window.scrollTo({top:0,behavior:'smooth'});
   if(id==='list-prop')renderPropList();
   if(id==='list-blog')renderBlogList();
+  if(id==='export-prop')generateExport();
+  if(id==='export-blog')generateBlogExport();
 }
 
 // ===== DASHBOARD =====
@@ -580,6 +616,7 @@ function updateBadges(){
 // ===== PROPERTIES =====
 function prevPropImg(){const u=document.getElementById('p-img').value;const img=document.getElementById('propImgPrev');if(u){img.src=u;img.classList.add('show');}else{img.classList.remove('show');}}
 function saveProp() {
+  const amenities=Array.from(document.querySelectorAll('.amenity-check:checked')).map(cb=>cb.value);
   const prop={
     id:+document.getElementById('editPropId').value||Date.now(),
     name:document.getElementById('p-name').value.trim(),
@@ -591,7 +628,8 @@ function saveProp() {
     img:document.getElementById('p-img').value.trim(),
     tag:document.getElementById('p-tag').value,
     status:document.getElementById('p-status').value,
-    waMsg:document.getElementById('p-wa').value.trim()
+    waMsg:document.getElementById('p-wa').value.trim(),
+    amenities:amenities
   };
   if(!prop.name||!prop.location||!prop.desc||!prop.price||!prop.type||!prop.img){alert('⚠️ Please fill all required fields');return;}
   let props=getProps();
@@ -610,6 +648,7 @@ function resetPropForm() {
   document.getElementById('p-tag').value='';
   document.getElementById('p-status').value='active';
   document.getElementById('propImgPrev').classList.remove('show');
+  document.querySelectorAll('.amenity-check').forEach(cb=>cb.checked=false);
 }
 function editProp(id) {
   const prop=getProps().find(p=>p.id===id);if(!prop)return;
@@ -626,6 +665,7 @@ function editProp(id) {
   document.getElementById('p-tag').value=prop.tag||'';
   document.getElementById('p-status').value=prop.status||'active';
   document.getElementById('p-wa').value=prop.waMsg||'';
+  document.querySelectorAll('.amenity-check').forEach(cb=>{cb.checked=(prop.amenities||[]).includes(cb.value);});
   prevPropImg();window.scrollTo({top:0,behavior:'smooth'});
 }
 function renderPropList() {
@@ -744,7 +784,13 @@ function closeOverlay(){document.getElementById('deleteOverlay').classList.remov
 // ===== EXPORT PROPERTIES =====
 function generateExport(){
   const props=getProps().filter(p=>p.status!=='sold');
-  const html=props.map(p=>{const wa=encodeURIComponent(p.waMsg||`Hi, I am interested in ${p.name}`);return `    <a href="https://wa.me/919772732488?text=${wa}" class="property-card fade-in" target="_blank">
+  const html=props.map(p=>{
+    const wa=encodeURIComponent(p.waMsg||`Hi, I am interested in ${p.name}`);
+    const amenitiesHtml=p.amenities&&p.amenities.length?`
+        <div class="card-amenities">
+          ${p.amenities.map(a=>`<span class="amenity-badge">${a}</span>`).join('')}
+        </div>`:'';
+    return `    <a href="https://wa.me/919772732488?text=${wa}" class="property-card fade-in" target="_blank">
       <div class="card-img">
         <img src="${p.img||'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&q=80'}" alt="${p.name}" loading="lazy">
         ${p.tag?`<span class="card-tag">${p.tag}</span>`:''}
@@ -753,7 +799,7 @@ function generateExport(){
       <div class="card-body">
         <div class="card-location">${p.location}</div>
         <div class="card-title">${p.name}</div>
-        <div class="card-desc">${p.desc}</div>
+        <div class="card-desc">${p.desc}</div>${amenitiesHtml}
         <div class="card-footer">
           <div class="card-details">
             <div class="card-detail">Size: <span>${p.size||'On Request'}</span></div>
@@ -762,7 +808,8 @@ function generateExport(){
           <div class="card-arrow">→</div>
         </div>
       </div>
-    </a>`;}).join('\n\n');
+    </a>`;
+  }).join('\n\n');
   document.getElementById('exportCode').value=`<!-- PROPERTIES START -->\n${html}\n<!-- PROPERTIES END -->`;
 }
 function exportProperties(){generateExport();const code=document.getElementById('exportCode').value;const blob=new Blob([code],{type:'text/plain'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='properties-export.txt';a.click();}
