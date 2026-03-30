@@ -422,104 +422,48 @@
   .amenity::before { content: '✓'; color: var(--gold); font-weight: 700; font-size: 12px; }
 
   /* ===== PROPERTIES GRID ===== */
-  .properties {
-    padding: 80px 40px;
-    background: var(--sand);
-  }
-  .properties-header {
-    max-width: 1200px;
-    margin: 0 auto 50px;
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-  .property-grid {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 28px;
-  }
-  .property-card {
-    background: var(--white);
-    overflow: hidden;
-    transition: transform 0.3s, box-shadow 0.3s;
-    cursor: pointer;
-    text-decoration: none;
-    display: block;
-    color: inherit;
-  }
-  .property-card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(0,0,0,0.12); }
-  .property-card:hover .card-img img { transform: scale(1.06); }
+  /* ===== OUR PROJECTS SECTION ===== */
+  #projects { background: var(--white); }
+  .projects-container { max-width: 1200px; margin: 0 auto; }
+  .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-bottom: 40px; }
 
-  .card-img { position: relative; overflow: hidden; height: 220px; }
-  .card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s; }
-  .card-tag {
-    position: absolute;
-    top: 16px;
-    left: 16px;
-    background: var(--gold);
-    color: var(--deep);
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    padding: 4px 12px;
-  }
-  .card-price {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    background: var(--deep);
-    color: var(--gold-light);
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 20px;
-    padding: 8px 16px;
-  }
+  /* Featured Project Card */
+  .project-featured { grid-column: 1 / -1; display: grid; grid-template-columns: 1.4fr 1fr; background: var(--sand); overflow: hidden; transition: box-shadow 0.3s; }
+  .project-featured:hover { box-shadow: 0 20px 60px rgba(0,0,0,0.12); }
+  .project-featured:hover .pf-img img { transform: scale(1.04); }
+  .pf-img { overflow: hidden; min-height: 340px; }
+  .pf-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s; display: block; }
+  .pf-body { padding: 40px; display: flex; flex-direction: column; justify-content: center; }
+  .pf-tag { font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold-dark); font-weight: 700; margin-bottom: 12px; }
+  .pf-title { font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 500; color: var(--deep); line-height: 1.25; margin-bottom: 14px; }
+  .pf-location { font-size: 13px; color: var(--muted); margin-bottom: 12px; }
+  .pf-excerpt { font-size: 14px; color: var(--text); line-height: 1.75; margin-bottom: 24px; }
+  .pf-meta { display: flex; align-items: center; gap: 16px; font-size: 12px; color: var(--muted); margin-bottom: 20px; flex-wrap: wrap; }
+  .pf-meta span { display: flex; align-items: center; gap: 5px; }
+  .pf-price { font-size: 24px; color: var(--gold-dark); font-weight: 700; margin-bottom: 20px; }
+  .project-btn { display: inline-block; background: var(--gold); color: var(--deep); padding: 12px 28px; font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; border: none; cursor: pointer; border-radius: 2px; transition: 0.2s; text-decoration: none; width: fit-content; }
+  .project-btn:hover { background: var(--gold-dark); color: var(--white); }
 
-  .card-body { padding: 22px 22px 24px; }
-  .card-location {
-    font-size: 11px;
-    color: var(--muted);
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    margin-bottom: 6px;
-  }
-  .card-location::before { content: '📍'; margin-right: 4px; font-size: 10px; }
-  .card-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 20px;
-    font-weight: 500;
-    color: var(--deep);
-    line-height: 1.3;
-    margin-bottom: 10px;
-  }
-  .card-desc { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 18px; }
-  .card-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-top: 16px;
-    border-top: 1px solid #f0e8d6;
-  }
-  .card-details { display: flex; gap: 16px; }
-  .card-detail { font-size: 12px; color: var(--muted); }
-  .card-detail span { color: var(--text); font-weight: 500; }
-  .card-arrow {
-    width: 34px;
-    height: 34px;
-    background: var(--gold);
-    color: var(--deep);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-    transition: background 0.2s;
-  }
-  .property-card:hover .card-arrow { background: var(--deep); color: var(--gold); }
+  /* Regular Project Card */
+  .project-card { background: var(--sand); overflow: hidden; transition: transform 0.3s, box-shadow 0.3s; text-decoration: none; display: block; }
+  .project-card:hover { transform: translateY(-5px); box-shadow: 0 16px 48px rgba(0,0,0,0.1); }
+  .project-card:hover .pc-img img { transform: scale(1.06); }
+  .pc-img { height: 220px; overflow: hidden; position: relative; }
+  .pc-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; display: block; }
+  .pc-tag { position: absolute; bottom: 0; left: 0; background: var(--gold); color: var(--deep); font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 12px; }
+  .pc-body { padding: 24px; }
+  .pc-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: var(--deep); line-height: 1.35; margin-bottom: 8px; }
+  .pc-location { font-size: 12px; color: var(--muted); margin-bottom: 10px; }
+  .pc-excerpt { font-size: 13px; color: var(--text); line-height: 1.7; margin-bottom: 14px; }
+  .pc-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 14px; border-top: 1px solid rgba(0,0,0,0.08); }
+  .pc-price { font-size: 18px; color: var(--gold-dark); font-weight: 700; }
+  .pc-link { font-size: 12px; color: var(--gold-dark); font-weight: 700; }
+
+  /* View All Button */
+  .view-all-container { text-align: center; }
+  .view-all-btn { display: inline-block; background: var(--deep); color: var(--gold-light); padding: 16px 40px; font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; border-radius: 2px; transition: 0.3s; }
+  .view-all-btn:hover { background: var(--gold); color: var(--deep); }
+
 
   /* ===== AGENT SECTION ===== */
   .agent-section {
