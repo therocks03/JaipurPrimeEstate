@@ -1942,91 +1942,7 @@
     nav.style.boxShadow = window.scrollY > 20 ? '0 4px 30px rgba(0,0,0,0.1)' : '0 2px 20px rgba(0,0,0,0.06)';
   });
 </script>
-  <script>
-function sendToWhatsApp(event) {
-    event.preventDefault();
-    
-    // Get form values
-    const name = document.querySelector('input[name="name"]').value || 
-                document.querySelector('input[placeholder*="Name"]').value;
-    const phone = document.querySelector('input[name="phone"]').value || 
-                 document.querySelector('input[type="tel"]').value;
-    const email = document.querySelector('input[name="email"]').value || 
-                 document.querySelector('input[type="email"]').value;
-    const interested = document.querySelector('select[name="interested"]')?.value || '';
-    const message = document.querySelector('textarea[name="message"]')?.value || '';
-    
-    // Format WhatsApp message
-    let whatsappMessage = `*New Enquiry from Jaipur PrimeEstate*\n\n`;
-    whatsappMessage += `*Name:* ${name}\n`;
-    whatsappMessage += `*Phone:* ${phone}\n`;
-    
-    if (email) {
-        whatsappMessage += `*Email:* ${email}\n`;
-    }
-    
-    if (interested) {
-        whatsappMessage += `*Interested In:* ${interested}\n`;
-    }
-    
-    if (message) {
-        whatsappMessage += `*Message:* ${message}\n`;
-    }
-    
-    // Encode for URL
-    const encodedMessage = encodeURIComponent(whatsappMessage);
-    
-    // WhatsApp number (7054133390 with country code)
-    const whatsappNumber = '917054133390';
-    
-    // Create and open WhatsApp URL
-    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
-    window.open(whatsappURL, '_blank');
-    
-    // Show success message
-    const successMsg = document.querySelector('.success-message');
-    if (successMsg) {
-        successMsg.style.display = 'block';
-        setTimeout(() => successMsg.style.display = 'none', 5000);
-    }
-    
-    // Reset form
-    event.target.reset();
-    return false;
-}
-
-// Attach to form on page load
-document.addEventListener('DOMContentLoaded', function() {
-    const form = document.querySelector('#contact form') || document.querySelector('form');
-    if (form) {
-        form.addEventListener('submit', sendToWhatsApp);
-    }
-});
-</script>
-  <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const form = document.querySelector('form');
-    form.addEventListener('submit', function(event) {
-        event.preventDefault();
-        
-        const name = document.querySelector('input[name="name"]').value;
-        const phone = document.querySelector('input[type="tel"]').value;
-        const email = document.querySelector('input[type="email"]').value;
-        const interested = document.querySelector('select[name="interested"]').value;
-        const message = document.querySelector('textarea[name="message"]').value;
-        
-        let msg = `*New Enquiry - Jaipur PrimeEstate*\n\n`;
-        msg += `*Name:* ${name}\n*Phone:* ${phone}\n`;
-        if(email) msg += `*Email:* ${email}\n`;
-        if(interested) msg += `*Interested In:* ${interested}\n`;
-        if(message) msg += `*Message:* ${message}`;
-        
-        window.open(`https://wa.me/917054133390?text=${encodeURIComponent(msg)}`, '_blank');
-        form.reset();
-    });
-});
-</script>
-  // ===== DEFAULT PROPERTIES =====
+   // ===== DEFAULT PROPERTIES =====
 const DEFAULT_PROPERTIES = [
   {
     id: 1,
@@ -2145,7 +2061,8 @@ function renderListing() {
 }
 
 // ===== PROPERTY DETAIL =====
-let currentPropertyId = null;
+<script>
+  let currentPropertyId = null;
 
 function openProperty(id) {
   currentPropertyId = id;
