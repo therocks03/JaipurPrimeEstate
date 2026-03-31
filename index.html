@@ -422,49 +422,104 @@
   .amenity::before { content: '✓'; color: var(--gold); font-weight: 700; font-size: 12px; }
 
   /* ===== PROPERTIES GRID ===== */
-  /* ===== OUR PROJECTS SECTION ===== */
-  
-  /* ===== OUR PROJECTS SECTION ===== */
-  #projects { background: var(--white); }
-  .projects-container { max-width: 1200px; margin: 0 auto; }
-  .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-bottom: 40px; }
+  .properties {
+    padding: 80px 40px;
+    background: var(--sand);
+  }
+  .properties-header {
+    max-width: 1200px;
+    margin: 0 auto 50px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .property-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+  .property-card {
+    background: var(--white);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+    color: inherit;
+  }
+  .property-card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(0,0,0,0.12); }
+  .property-card:hover .card-img img { transform: scale(1.06); }
 
-  /* Featured Project Card */
-  .project-featured { grid-column: 1 / -1; display: grid; grid-template-columns: 1.4fr 1fr; background: var(--sand); overflow: hidden; transition: box-shadow 0.3s; }
-  .project-featured:hover { box-shadow: 0 20px 60px rgba(0,0,0,0.12); }
-  .project-featured:hover .pf-img img { transform: scale(1.04); }
-  .pf-img { overflow: hidden; min-height: 340px; }
-  .pf-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s; display: block; }
-  .pf-body { padding: 40px; display: flex; flex-direction: column; justify-content: center; }
-  .pf-tag { font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold-dark); font-weight: 700; margin-bottom: 12px; }
-  .pf-title { font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 500; color: var(--deep); line-height: 1.25; margin-bottom: 14px; }
-  .pf-location { font-size: 13px; color: var(--muted); margin-bottom: 12px; }
-  .pf-excerpt { font-size: 14px; color: var(--text); line-height: 1.75; margin-bottom: 24px; }
-  .pf-meta { display: flex; align-items: center; gap: 16px; font-size: 12px; color: var(--muted); margin-bottom: 20px; flex-wrap: wrap; }
-  .pf-meta span { display: flex; align-items: center; gap: 5px; }
-  .pf-price { font-size: 24px; color: var(--gold-dark); font-weight: 700; margin-bottom: 20px; }
-  .project-btn { display: inline-block; background: var(--gold); color: var(--deep); padding: 12px 28px; font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; border: none; cursor: pointer; border-radius: 2px; transition: 0.2s; text-decoration: none; width: fit-content; }
-  .project-btn:hover { background: var(--gold-dark); color: var(--white); }
+  .card-img { position: relative; overflow: hidden; height: 220px; }
+  .card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s; }
+  .card-tag {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background: var(--gold);
+    color: var(--deep);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+  }
+  .card-price {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: var(--deep);
+    color: var(--gold-light);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    padding: 8px 16px;
+  }
 
-  /* Regular Project Card */
-  .project-card { background: var(--sand); overflow: hidden; transition: transform 0.3s, box-shadow 0.3s; text-decoration: none; display: block; }
-  .project-card:hover { transform: translateY(-5px); box-shadow: 0 16px 48px rgba(0,0,0,0.1); }
-  .project-card:hover .pc-img img { transform: scale(1.06); }
-  .pc-img { height: 220px; overflow: hidden; position: relative; }
-  .pc-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; display: block; }
-  .pc-tag { position: absolute; bottom: 0; left: 0; background: var(--gold); color: var(--deep); font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 12px; }
-  .pc-body { padding: 24px; }
-  .pc-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: var(--deep); line-height: 1.35; margin-bottom: 8px; }
-  .pc-location { font-size: 12px; color: var(--muted); margin-bottom: 10px; }
-  .pc-excerpt { font-size: 13px; color: var(--text); line-height: 1.7; margin-bottom: 14px; }
-  .pc-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 14px; border-top: 1px solid rgba(0,0,0,0.08); }
-  .pc-price { font-size: 18px; color: var(--gold-dark); font-weight: 700; }
-  .pc-link { font-size: 12px; color: var(--gold-dark); font-weight: 700; }
-
-  /* View All Button */
-  .view-all-container { text-align: center; }
-  .view-all-btn { display: inline-block; background: var(--deep); color: var(--gold-light); padding: 16px 40px; font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; border-radius: 2px; transition: 0.3s; }
-  .view-all-btn:hover { background: var(--gold); color: var(--deep); }
+  .card-body { padding: 22px 22px 24px; }
+  .card-location {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .card-location::before { content: '📍'; margin-right: 4px; font-size: 10px; }
+  .card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--deep);
+    line-height: 1.3;
+    margin-bottom: 10px;
+  }
+  .card-desc { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 18px; }
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 16px;
+    border-top: 1px solid #f0e8d6;
+  }
+  .card-details { display: flex; gap: 16px; }
+  .card-detail { font-size: 12px; color: var(--muted); }
+  .card-detail span { color: var(--text); font-weight: 500; }
+  .card-arrow {
+    width: 34px;
+    height: 34px;
+    background: var(--gold);
+    color: var(--deep);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    transition: background 0.2s;
+  }
+  .property-card:hover .card-arrow { background: var(--deep); color: var(--gold); }
 
   /* ===== AGENT SECTION ===== */
   .agent-section {
@@ -928,7 +983,16 @@
   <ul class="nav-links" id="nav-links">
     <li><a href="#hero">Home</a></li>
     <li class="has-dropdown">
-      <a href="property.html">Properties ▾</a> </li>
+      <a href="#properties">Properties ▾</a>
+      <div class="dropdown">
+        <a href="#properties">RLB Pride Residential Plots</a>
+        <a href="#properties">Balaji Green 2 City Plots</a>
+        <a href="#properties">Unnati Shiv Vilas Plots</a>
+        <a href="#properties">Golden Valley Plots</a>
+        <a href="#properties">Hanuman Nagar Plots</a>
+        <a href="#properties">Govind Aardhaye Plots</a>
+      </div>
+    </li>
     <li><a href="#agent">About</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="blog.html">Blog</a></li>
@@ -1061,24 +1125,145 @@
 </section>
 
 <!-- PROPERTIES GRID -->
-<!-- ===== OUR PROJECTS SECTION ===== -->
-<section id="projects">
-  <div class="section-header">
-    <div class="section-tag">OUR COLLECTION</div>
-    <h2 class="section-title">Featured Properties</h2>
-    <p class="section-subtitle">Discover handpicked premium properties across Jaipur's most prestigious locations</p>
+<section class="properties" id="properties">
+  <div class="properties-header">
+    <div>
+      <span class="section-tag">Our Projects</span>
+      <h2 class="section-title">Explore <em>Properties</em><br>in Jaipur</h2>
+      <div class="divider"></div>
+    </div>
+    <a href="#contact" class="btn-primary">View All</a>
   </div>
-  
-  <div class="projects-container">
-    <div class="projects-grid" id="projectsGrid">
-      <!-- Properties will be dynamically loaded here -->
-    </div>
-    
-    <div class="view-all-container">
-      <a href="property.html" class="view-all-btn">View All Properties →</a>
-    </div>
+
+  <div class="property-grid">
+    <!-- Card 1 -->
+    <a href="#contact" class="property-card fade-in">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=600&q=80" alt="RLB Pride" loading="lazy">
+        <span class="card-tag">JDA Approved</span>
+        <div class="card-price">₹14,950/yd</div>
+      </div>
+      <div class="card-body">
+        <div class="card-location">Jaipur–Kota Highway</div>
+        <div class="card-title">RLB Pride Residential Plots</div>
+        <div class="card-desc">Premium JDA-approved plots with modern infrastructure near Kota Highway corridor.</div>
+        <div class="card-footer">
+          <div class="card-details">
+            <div class="card-detail">Size: <span>50–200 sq yd</span></div>
+            <div class="card-detail">Type: <span>Residential</span></div>
+          </div>
+          <div class="card-arrow">→</div>
+        </div>
+      </div>
+    </a>
+
+    <!-- Card 2 -->
+    <a href="#contact" class="property-card fade-in">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&q=80" alt="Balaji Green" loading="lazy">
+        <span class="card-tag">RERA Approved</span>
+        <div class="card-price">₹19,950/yd</div>
+      </div>
+      <div class="card-body">
+        <div class="card-location">Bhilwada Highway, Jaipur</div>
+        <div class="card-title">Balaji Green 2 City</div>
+        <div class="card-desc">Affordable township plots in a well-planned colony with full amenities and green landscape.</div>
+        <div class="card-footer">
+          <div class="card-details">
+            <div class="card-detail">Size: <span>60–500 sq yd</span></div>
+            <div class="card-detail">Type: <span>Township</span></div>
+          </div>
+          <div class="card-arrow">→</div>
+        </div>
+      </div>
+    </a>
+
+    <!-- Card 3 -->
+    <a href="#contact" class="property-card fade-in">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&q=80" alt="Unnati Shiv" loading="lazy">
+        <span class="card-tag">Premium</span>
+        <div class="card-price">On Request</div>
+      </div>
+      <div class="card-body">
+        <div class="card-location">Jaipur North</div>
+        <div class="card-title">Unnati Shiv Vilas Township</div>
+        <div class="card-desc">Premium gated township offering world-class amenities for a modern lifestyle in Jaipur.</div>
+        <div class="card-footer">
+          <div class="card-details">
+            <div class="card-detail">Size: <span>100–250 sq yd</span></div>
+            <div class="card-detail">Type: <span>Gated Township</span></div>
+          </div>
+          <div class="card-arrow">→</div>
+        </div>
+      </div>
+    </a>
+
+    <!-- Card 4 -->
+    <a href="#contact" class="property-card fade-in">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&q=80" alt="Golden Valley" loading="lazy">
+        <span class="card-tag">Affordable</span>
+        <div class="card-price">Best Price</div>
+      </div>
+      <div class="card-body">
+        <div class="card-location">Bhilwada Highway</div>
+        <div class="card-title">Golden Valley Plots</div>
+        <div class="card-desc">Budget-friendly residential plots in a rapidly developing corridor with excellent connectivity.</div>
+        <div class="card-footer">
+          <div class="card-details">
+            <div class="card-detail">Size: <span>50–150 sq yd</span></div>
+            <div class="card-detail">Type: <span>Residential</span></div>
+          </div>
+          <div class="card-arrow">→</div>
+        </div>
+      </div>
+    </a>
+
+    <!-- Card 5 -->
+    <a href="#contact" class="property-card fade-in">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=600&q=80" alt="Hanuman Nagar" loading="lazy">
+        <span class="card-tag">Beelwa Tonk Road</span>
+        <div class="card-price">Enquire</div>
+      </div>
+      <div class="card-body">
+        <div class="card-location">Beelwa, Tonk Road</div>
+        <div class="card-title">Hanuman Nagar Plots</div>
+        <div class="card-desc">Strategically located plots on Tonk Road with excellent road and commercial connectivity.</div>
+        <div class="card-footer">
+          <div class="card-details">
+            <div class="card-detail">Size: <span>60–200 sq yd</span></div>
+            <div class="card-detail">Type: <span>Residential</span></div>
+          </div>
+          <div class="card-arrow">→</div>
+        </div>
+      </div>
+    </a>
+
+    <!-- Card 6 -->
+    <a href="#contact" class="property-card fade-in">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1523217582562-09d0def993a6?w=600&q=80" alt="Govind Aardhaye" loading="lazy">
+        <span class="card-tag">JDA Plots</span>
+        <div class="card-price">Best Deal</div>
+      </div>
+      <div class="card-body">
+        <div class="card-location">Jaipur</div>
+        <div class="card-title">Govind Aardhaye JDA Plots</div>
+        <div class="card-desc">Legally sound JDA-approved plots with complete documentation and peaceful neighborhood.</div>
+        <div class="card-footer">
+          <div class="card-details">
+            <div class="card-detail">Size: <span>50–250 sq yd</span></div>
+            <div class="card-detail">Type: <span>JDA Plot</span></div>
+          </div>
+          <div class="card-arrow">→</div>
+        </div>
+      </div>
+    </a>
   </div>
 </section>
+
 <!-- AGENT SECTION -->
 <section class="agent-section" id="agent">
   <div class="agent-inner">
@@ -1314,379 +1499,235 @@
 </section>
 
 <!-- CONTACT -->
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<!-- ========================================
+     COMPLETE CONTACT SECTION WITH WHATSAPP
+     Copy this entire section and REPLACE your existing contact section
+     ======================================== -->
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div class="fade-in">
+      <span class="section-tag">Get in Touch</span>
+      <h2 class="section-title">Talk to Our <em>Experts</em></h2>
+      <div class="divider"></div>
+      <p class="section-sub" style="margin-bottom:32px">Visit us or reach out — we'll guide you to the perfect property in Jaipur.</p>
 
-        body {
-            font-family: 'Cormorant Garamond', 'Georgia', serif;
-            background: #faf8f5;
-            color: #2c2c2c;
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 60px 40px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: start;
-        }
-
-        .left-section {
-            padding-right: 40px;
-        }
-
-        .eyebrow {
-            font-size: 11px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: #b8935f;
-            margin-bottom: 20px;
-        }
-
-        h1 {
-            font-size: 56px;
-            font-weight: 400;
-            line-height: 1.2;
-            margin-bottom: 10px;
-        }
-
-        h1 .experts {
-            color: #b8935f;
-            font-style: italic;
-        }
-
-        .divider {
-            width: 60px;
-            height: 2px;
-            background: #b8935f;
-            margin: 30px 0;
-        }
-
-        .subtitle {
-            font-size: 16px;
-            color: #666;
-            margin-bottom: 50px;
-        }
-
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
-
-        .contact-item {
-            display: flex;
-            gap: 20px;
-            align-items: flex-start;
-        }
-
-        .icon-circle {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: #f5f0e8;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .icon-circle svg {
-            width: 22px;
-            height: 22px;
-            stroke: #b8935f;
-            fill: none;
-        }
-
-        .contact-details h3 {
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 5px;
-            color: #2c2c2c;
-        }
-
-        .contact-details p {
-            font-size: 14px;
-            color: #666;
-            line-height: 1.6;
-        }
-
-        .form-section {
-            background: white;
-            padding: 50px;
-            border-radius: 4px;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
-        }
-
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        label {
-            display: block;
-            font-size: 11px;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: #666;
-            margin-bottom: 10px;
-        }
-
-        input, select, textarea {
-            width: 100%;
-            padding: 14px 18px;
-            border: 1px solid #e5dfd5;
-            background: #faf8f5;
-            font-size: 15px;
-            font-family: inherit;
-            border-radius: 2px;
-            transition: all 0.3s ease;
-        }
-
-        input:focus, select:focus, textarea:focus {
-            outline: none;
-            border-color: #b8935f;
-            background: white;
-        }
-
-        textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 18px;
-            background: #c9a76a;
-            color: white;
-            border: none;
-            font-size: 12px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            font-weight: 600;
-            cursor: pointer;
-            border-radius: 2px;
-            transition: all 0.3s ease;
-            margin-top: 10px;
-        }
-
-        .submit-btn:hover {
-            background: #b8935f;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(201, 167, 106, 0.3);
-        }
-
-        .submit-btn:active {
-            transform: translateY(0);
-        }
-
-        .success-message {
-            background: #d4edda;
-            color: #155724;
-            padding: 15px 20px;
-            border-radius: 4px;
-            margin-top: 20px;
-            display: none;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .success-message.show {
-            display: flex;
-        }
-
-        .success-message svg {
-            width: 20px;
-            height: 20px;
-            flex-shrink: 0;
-        }
-
-        @media (max-width: 968px) {
-            .container {
-                grid-template-columns: 1fr;
-                gap: 50px;
-                padding: 40px 20px;
-            }
-
-            .left-section {
-                padding-right: 0;
-            }
-
-            h1 {
-                font-size: 42px;
-            }
-
-            .form-section {
-                padding: 30px 25px;
-            }
-
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="left-section">
-            <div class="eyebrow">GET IN TOUCH</div>
-            <h1>Talk to Our <span class="experts">Experts</span></h1>
-            <div class="divider"></div>
-            <p class="subtitle">Visit us or reach out — we'll guide you to the perfect property in Jaipur.</p>
-
-            <div class="contact-info">
-                <div class="contact-item">
-                    <div class="icon-circle">
-                        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                            <circle cx="12" cy="10" r="3"></circle>
-                        </svg>
-                    </div>
-                    <div class="contact-details">
-                        <h3>Office Address</h3>
-                        <p>Amrapali Circle, Vaishali Nagar, Jaipur, Rajasthan – 302021</p>
-                    </div>
-                </div>
-
-                <div class="contact-item">
-                    <div class="icon-circle">
-                        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                        </svg>
-                    </div>
-                    <div class="contact-details">
-                        <h3>Phone / WhatsApp</h3>
-                        <p>+91 7054133390 · +91 8058362663</p>
-                    </div>
-                </div>
-
-                <div class="contact-item">
-                    <div class="icon-circle">
-                        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                            <polyline points="22,6 12,13 2,6"></polyline>
-                        </svg>
-                    </div>
-                    <div class="contact-details">
-                        <h3>Email</h3>
-                        <p>info@jaipurPrimeEstate.com</p>
-                    </div>
-                </div>
-
-                <div class="contact-item">
-                    <div class="icon-circle">
-                        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <polyline points="12 6 12 12 16 14"></polyline>
-                        </svg>
-                    </div>
-                    <div class="contact-details">
-                        <h3>Working Hours</h3>
-                        <p>Mon – Sat: 9:00 AM – 7:00 PM | Sun: 10:00 AM – 4:00 PM</p>
-                    </div>
-                </div>
-            </div>
+      <div class="contact-detail">
+        <div class="contact-icon">📍</div>
+        <div class="contact-detail-text">
+          <strong>Office Address</strong>
+          <span>Amrapali Circle, Vaishali Nagar, Jaipur, Rajasthan – 302021</span>
         </div>
-
-        <div class="form-section">
-            <form id="contactForm">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="name">Your Name *</label>
-                        <input type="text" id="name" name="name" required placeholder="Ramesh Kumar">
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Phone Number *</label>
-                        <input type="tel" id="phone" name="phone" required placeholder="+91 98765 43210">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" name="email" placeholder="you@example.com">
-                </div>
-
-                <div class="form-group">
-                    <label for="interest">Interested In</label>
-                    <select id="interest" name="interest">
-                        <option value="RLB Pride Plots">RLB Pride Plots</option>
-                        <option value="Residential Property">Residential Property</option>
-                        <option value="Commercial Property">Commercial Property</option>
-                        <option value="Investment Opportunity">Investment Opportunity</option>
-                        <option value="General Inquiry">General Inquiry</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" placeholder="I'm interested in knowing more about..."></textarea>
-                </div>
-
-                <button type="submit" class="submit-btn">Send Enquiry →</button>
-
-                <div class="success-message" id="successMessage">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                    </svg>
-                    <span>Thank you! We'll contact you within 24 hours.</span>
-                </div>
-            </form>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-icon">📞</div>
+        <div class="contact-detail-text">
+          <strong>Phone / WhatsApp</strong>
+          <span><a href="tel:+917054133390">+91 7054133390</a> · <a href="tel:+918058362663">+91 8058362663</a></span>
         </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-icon">✉️</div>
+        <div class="contact-detail-text">
+          <strong>Email</strong>
+          <span><a href="mailto:info@jaipurdreamhomes.com">info@jaipurPrimeEstate.com></a></span>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-icon">🕐</div>
+        <div class="contact-detail-text">
+          <strong>Working Hours</strong>
+          <span>Mon – Sat: 9:00 AM – 7:00 PM &nbsp;|&nbsp; Sun: 10:00 AM – 4:00 PM</span>
+        </div>
+      </div>
     </div>
 
-    <script>
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+    <div class="fade-in">
+      <form id="contactForm" onsubmit="handleContact(event)">
+        <div class="form-row">
+          <div class="form-field">
+            <label>Your Name *</label>
+            <input type="text" placeholder="Ramesh Kumar" required>
+          </div>
+          <div class="form-field">
+            <label>Phone Number *</label>
+            <input type="tel" placeholder="+91 98765 43210" required>
+          </div>
+        </div>
+        <div class="form-field">
+          <label>Email Address</label>
+          <input type="email" placeholder="you@example.com">
+        </div>
+        <div class="form-field">
+          <label>Interested In</label>
+          <select>
+            <option>RLB Pride Plots</option>
+            <option>Balaji Green 2 City</option>
+            <option>Unnati Shiv Vilas</option>
+            <option>Golden Valley</option>
+            <option>Hanuman Nagar Plots</option>
+            <option>Govind Aardhaye Plots</option>
+            <option>Other / Not decided</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label>Message</label>
+          <textarea rows="4" placeholder="I'm interested in knowing more about…"></textarea>
+        </div>
+        <button type="submit" class="btn-primary" style="width:100%">Send Enquiry →</button>
+        <div class="form-success" id="formSuccess">✅ Thank you! We'll contact you within 24 hours.</div>
+      </form>
+    </div>
+  </div>
+</section>
 
+<!-- ========================================
+     WHATSAPP INTEGRATION SCRIPT
+     Add this before the closing </body> tag
+     ======================================== -->
+<script>
+(function() {
+    'use strict';
+    
+    // Wait for DOM to be fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('enquiryForm');
+        const successMessage = document.getElementById('successMessage');
+        
+        if (!form) {
+            console.error('Enquiry form not found!');
+            return;
+        }
+        
+        // Form submission handler
+        form.addEventListener('submit', function(event) {
+            // Prevent default form submission
+            event.preventDefault();
+            event.stopPropagation();
+            
+            console.log('Form submitted!');
+            
             // Get form values
-            const name = document.getElementById('name').value;
-            const phone = document.getElementById('phone').value;
-            const email = document.getElementById('email').value;
-            const interest = document.getElementById('interest').value;
-            const message = document.getElementById('message').value;
-
+            const formData = {
+                name: document.getElementById('name').value.trim(),
+                phone: document.getElementById('phone').value.trim(),
+                email: document.getElementById('email').value.trim(),
+                interested: document.getElementById('interested').value,
+                message: document.getElementById('message').value.trim()
+            };
+            
+            // Validate required fields
+            if (!formData.name || !formData.phone) {
+                alert('Please fill in all required fields (Name and Phone Number)');
+                return false;
+            }
+            
             // Format WhatsApp message
-            let whatsappMessage = `*New Enquiry - Jaipur Prime Estate*\n\n`;
-            whatsappMessage += `*Name:* ${name}\n`;
-            whatsappMessage += `*Phone:* ${phone}\n`;
-            if (email) whatsappMessage += `*Email:* ${email}\n`;
-            whatsappMessage += `*Interested In:* ${interest}\n`;
-            if (message) whatsappMessage += `*Message:* ${message}`;
-
-            // WhatsApp number (without + or spaces)
+            let whatsappMessage = '*New Enquiry - Jaipur PrimeEstate*\n\n';
+            whatsappMessage += `*Name:* ${formData.name}\n`;
+            whatsappMessage += `*Phone:* ${formData.phone}\n`;
+            
+            if (formData.email) {
+                whatsappMessage += `*Email:* ${formData.email}\n`;
+            }
+            
+            if (formData.interested) {
+                whatsappMessage += `*Interested In:* ${formData.interested}\n`;
+            }
+            
+            if (formData.message) {
+                whatsappMessage += `*Message:* ${formData.message}\n`;
+            }
+            
+            // Encode message for URL
+            const encodedMessage = encodeURIComponent(whatsappMessage);
+            
+            // WhatsApp number (India country code: 91)
             const whatsappNumber = '917054133390';
-
+            
             // Create WhatsApp URL
-            const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
-
+            const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+            
+            console.log('Opening WhatsApp with message:', whatsappMessage);
+            
+            // Open WhatsApp in new window
+            const whatsappWindow = window.open(whatsappURL, '_blank');
+            
+            if (!whatsappWindow) {
+                alert('Please allow popups to send enquiry via WhatsApp');
+                return false;
+            }
+            
             // Show success message
-            const successMsg = document.getElementById('successMessage');
-            successMsg.classList.add('show');
-
-            // Open WhatsApp
-            window.open(whatsappURL, '_blank');
-
-            // Reset form after a delay
-            setTimeout(() => {
-                this.reset();
-                successMsg.classList.remove('show');
-            }, 3000);
+            if (successMessage) {
+                successMessage.style.display = 'block';
+                
+                // Hide success message after 5 seconds
+                setTimeout(function() {
+                    successMessage.style.display = 'none';
+                }, 5000);
+            }
+            
+            // Reset form
+            form.reset();
+            
+            return false;
         });
-    </script>
+        
+        console.log('WhatsApp form integration loaded successfully!');
+    });
+})();
+</script>
 
+<style>
+/* Success Message Styling */
+.success-message {
+    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+    color: white;
+    padding: 16px 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+    text-align: center;
+    font-weight: 500;
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Ensure form elements are clickable */
+.enquiry-form input,
+.enquiry-form select,
+.enquiry-form textarea,
+.enquiry-form button {
+    position: relative;
+    z-index: 10;
+    pointer-events: auto;
+}
+
+.submit-btn {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+</style>
 <!-- BLOG -->
 <!-- BLOG -->
 <section class="blog" id="blog">
@@ -1790,7 +1831,7 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <span>© 2025 Jaipur PrimeEstate. All rights reserved.</span>
+    <span>© 2026 Jaipur PrimeEstate. All rights reserved.</span>
     <span><a href="#contact">Privacy Policy</a> · <a href="#contact">Terms of Use</a> · Designed with ♥ in Jaipur</span>
   </div>
 </footer>
@@ -1913,304 +1954,89 @@
     nav.style.boxShadow = window.scrollY > 20 ? '0 4px 30px rgba(0,0,0,0.1)' : '0 2px 20px rgba(0,0,0,0.06)';
   });
 </script>
-<!-- PROPERTIES LOADER - ADD THIS BEFORE </body> -->
-<script>
-(function() {
-  'use strict';
-  
-  // Wait for page to load
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
-  
-  function init() {
-    console.log('Properties Loader Starting...');
+  <script>
+function sendToWhatsApp(event) {
+    event.preventDefault();
     
-    // Load properties from localStorage
-    let properties = [];
-    try {
-      const stored = localStorage.getItem('properties');
-      properties = stored ? JSON.parse(stored) : [];
-      console.log('Found', properties.length, 'properties in localStorage');
-    } catch (e) {
-      console.error('Error loading properties:', e);
-      return;
+    // Get form values
+    const name = document.querySelector('input[name="name"]').value || 
+                document.querySelector('input[placeholder*="Name"]').value;
+    const phone = document.querySelector('input[name="phone"]').value || 
+                 document.querySelector('input[type="tel"]').value;
+    const email = document.querySelector('input[name="email"]').value || 
+                 document.querySelector('input[type="email"]').value;
+    const interested = document.querySelector('select[name="interested"]')?.value || '';
+    const message = document.querySelector('textarea[name="message"]')?.value || '';
+    
+    // Format WhatsApp message
+    let whatsappMessage = `*New Enquiry from Jaipur PrimeEstate*\n\n`;
+    whatsappMessage += `*Name:* ${name}\n`;
+    whatsappMessage += `*Phone:* ${phone}\n`;
+    
+    if (email) {
+        whatsappMessage += `*Email:* ${email}\n`;
     }
     
-    // Filter active properties
-    const activeProperties = properties.filter(p => 
-      p.status === 'Available' || p.status === '🔥 Hot Deal'
-    );
-    
-    console.log('Active properties:', activeProperties.length);
-    
-    if (activeProperties.length === 0) {
-      console.log('No active properties to display');
-      return;
+    if (interested) {
+        whatsappMessage += `*Interested In:* ${interested}\n`;
     }
     
-    // Find the properties section by looking for common patterns
-    const possibleSelectors = [
-      '.properties-grid',
-      '#properties .grid',
-      '#properties .properties-grid',
-      'section#properties .grid',
-      '.property-grid',
-      '.properties-container',
-      '[class*="properties"] [class*="grid"]',
-      '[class*="property"] [class*="grid"]'
-    ];
-    
-    let gridContainer = null;
-    for (const selector of possibleSelectors) {
-      gridContainer = document.querySelector(selector);
-      if (gridContainer) {
-        console.log('Found grid container using:', selector);
-        break;
-      }
+    if (message) {
+        whatsappMessage += `*Message:* ${message}\n`;
     }
     
-    // If still not found, look for any div with multiple property cards
-    if (!gridContainer) {
-      const allDivs = document.querySelectorAll('div');
-      for (const div of allDivs) {
-        const cards = div.querySelectorAll('.property-card, [class*="property-card"]');
-        if (cards.length >= 3) {
-          gridContainer = div;
-          console.log('Found grid container with', cards.length, 'property cards');
-          break;
-        }
-      }
+    // Encode for URL
+    const encodedMessage = encodeURIComponent(whatsappMessage);
+    
+    // WhatsApp number (7054133390 with country code)
+    const whatsappNumber = '917054133390';
+    
+    // Create and open WhatsApp URL
+    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+    window.open(whatsappURL, '_blank');
+    
+    // Show success message
+    const successMsg = document.querySelector('.success-message');
+    if (successMsg) {
+        successMsg.style.display = 'block';
+        setTimeout(() => successMsg.style.display = 'none', 5000);
     }
     
-    if (!gridContainer) {
-      console.error('Could not find properties grid container');
-      alert('Properties loaded but cannot find display area. Please check console.');
-      return;
-    }
-    
-    console.log('Rendering properties to grid...');
-    
-    // Generate property cards HTML
-    const cardsHTML = activeProperties.map(property => {
-      const badge = property.tag || property.status || 'Available';
-      const imageUrl = property.imageUrl || 'https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=600&q=80';
-      
-      return `
-        <div class="property-card" style="background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.08); transition: transform 0.3s;">
-          <a href="#contact" style="text-decoration: none; color: inherit; display: block;">
-            <div class="card-image" style="position: relative; overflow: hidden; height: 250px;">
-              <img src="${imageUrl}" 
-                   alt="${property.name}" 
-                   style="width: 100%; height: 100%; object-fit: cover;"
-                   onerror="this.src='https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=600&q=80'">
-              <span class="badge" style="position: absolute; top: 15px; left: 15px; background: ${property.status === '🔥 Hot Deal' ? '#ef4444' : '#10b981'}; color: white; padding: 0.4rem 1rem; border-radius: 50px; font-size: 0.85rem; font-weight: 600;">
-                ${badge}
-              </span>
-            </div>
-            <div class="card-content" style="padding: 1.5rem;">
-              <p class="price" style="color: #667eea; font-weight: 700; font-size: 1.3rem; margin: 0 0 0.5rem 0;">
-                ${property.price}
-              </p>
-              <p class="location" style="color: #999; font-size: 0.9rem; margin: 0 0 0.8rem 0;">
-                ${property.location}
-              </p>
-              <h3 style="font-size: 1.3rem; font-weight: 700; margin: 0 0 0.8rem 0; color: #1f2937;">
-                ${property.name}
-              </h3>
-              <p class="desc" style="color: #666; font-size: 0.95rem; line-height: 1.6; margin: 0 0 1rem 0;">
-                ${property.description ? property.description.substring(0, 100) + '...' : ''}
-              </p>
-              <div class="meta" style="display: flex; gap: 1rem; font-size: 0.85rem; color: #999; margin-bottom: 1rem;">
-                <span>📐 ${property.plotSize || 'Contact for size'}</span>
-                <span>🏘️ ${property.type || 'Residential'}</span>
-              </div>
-              <span class="arrow" style="color: #667eea; font-size: 1.5rem; font-weight: 600;">→</span>
-            </div>
-          </a>
-        </div>
-      `;
-    }).join('');
-    
-    // Replace the grid content
-    gridContainer.innerHTML = cardsHTML;
-    
-    // Update property counts
-    const countElements = document.querySelectorAll('.stat-number, [data-property-count]');
-    countElements.forEach(el => {
-      el.textContent = activeProperties.length;
-    });
-    
-    console.log('✅ Properties rendered successfully!');
-    
-    // Add hover effects
-    const style = document.createElement('style');
-    style.textContent = `
-      .property-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 30px rgba(0,0,0,0.15) !important;
-      }
-    `;
-    document.head.appendChild(style);
-  }
-  
-  // Listen for storage changes (when admin updates properties)
-  window.addEventListener('storage', function(e) {
-    if (e.key === 'properties') {
-      console.log('Properties updated, reloading...');
-      init();
-    }
-  });
-  
-})();
-</script>
-<script>
-// ===== RENDER FEATURED PROPERTIES ON HOME PAGE =====
-function renderHomeProjects() {
-  const featured = getLatestProperties(4); // Get 4 latest properties
-  const grid = document.getElementById('projectsGrid');
-  
-  if (!featured.length) {
-    grid.innerHTML = '<p style="text-align:center;color:var(--muted);">No properties available.</p>';
-    return;
-  }
-
-  grid.innerHTML = featured.map((p, i) => {
-    if (i === 0) {
-      // First property as featured
-      return `
-        <div class="project-featured">
-          <div class="pf-img">
-            <img src="${p.imageUrl}" alt="${p.name}" onerror="this.src='https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=600&q=80'">
-          </div>
-          <div class="pf-body">
-            <div class="pf-tag">${p.tag}</div>
-            <div class="pf-title">${p.name}</div>
-            <div class="pf-location">📍 ${p.location}</div>
-            <div class="pf-excerpt">${p.excerpt}</div>
-            <div class="pf-meta">
-              <span>🛏️ ${p.bedrooms} BHK</span>
-              <span>📐 ${p.area}</span>
-              <span>🚗 ${p.parking}</span>
-            </div>
-            <div class="pf-price">${p.price}</div>
-            <a href="property.html?id=${p.id}" class="project-btn">View Details</a>
-          </div>
-        </div>
-      `;
-    } else {
-      // Regular cards
-      return `
-        <a href="property.html?id=${p.id}" class="project-card">
-          <div class="pc-img">
-            <img src="${p.imageUrl}" alt="${p.name}" onerror="this.src='https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=600&q=80'">
-            <div class="pc-tag">${p.tag}</div>
-          </div>
-          <div class="pc-body">
-            <div class="pc-title">${p.name}</div>
-            <div class="pc-location">📍 ${p.location}</div>
-            <div class="pc-excerpt">${p.excerpt}</div>
-            <div class="pc-footer">
-              <div class="pc-price">${p.price}</div>
-              <div class="pc-link">Details →</div>
-            </div>
-          </div>
-        </a>
-      `;
-    }
-  }).join('');
-}
-<!-- Include shared properties data -->
-<script src="properties-data.js"></script>
-
-<script>
-// ===== RENDER FEATURED PROPERTIES ON HOME PAGE =====
-function renderHomeProjects() {
-  const featured = getLatestProperties(4); // Get 4 latest properties
-  const grid = document.getElementById('projectsGrid');
-  
-  if (!featured.length) {
-    grid.innerHTML = '<p style="text-align:center;color:var(--muted);">No properties available.</p>';
-    return;
-  }
-
-  grid.innerHTML = featured.map((p, i) => {
-    if (i === 0) {
-      // First property as featured
-      return `
-        <div class="project-featured">
-          <div class="pf-img">
-            <img src="${p.imageUrl}" alt="${p.name}" onerror="this.src='https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=600&q=80'">
-          </div>
-          <div class="pf-body">
-            <div class="pf-tag">${p.tag}</div>
-            <div class="pf-title">${p.name}</div>
-            <div class="pf-location">📍 ${p.location}</div>
-            <div class="pf-excerpt">${p.excerpt}</div>
-            <div class="pf-meta">
-              <span>🛏️ ${p.bedrooms} BHK</span>
-              <span>📐 ${p.area}</span>
-              <span>🚗 ${p.parking}</span>
-            </div>
-            <div class="pf-price">${p.price}</div>
-            <a href="property.html?id=${p.id}" class="project-btn">View Details</a>
-          </div>
-        </div>
-      `;
-    } else {
-      // Regular cards
-      return `
-        <a href="property.html?id=${p.id}" class="project-card">
-          <div class="pc-img">
-            <img src="${p.imageUrl}" alt="${p.name}" onerror="this.src='https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=600&q=80'">
-            <div class="pc-tag">${p.tag}</div>
-          </div>
-          <div class="pc-body">
-            <div class="pc-title">${p.name}</div>
-            <div class="pc-location">📍 ${p.location}</div>
-            <div class="pc-excerpt">${p.excerpt}</div>
-            <div class="pc-footer">
-              <div class="pc-price">${p.price}</div>
-              <div class="pc-link">Details →</div>
-            </div>
-          </div>
-        </a>
-      `;
-    }
-  }).join('');
+    // Reset form
+    event.target.reset();
+    return false;
 }
 
-// ===== RENDER TICKER WITH LATEST PROPERTIES =====
-function renderTicker() {
-  const latest = getLatestProperties(6);
-  const ticker = document.getElementById('tickerContent');
-  
-  // Duplicate content for seamless loop
-  const tickerHTML = latest.map(p => `
-    <div class="ticker-item">
-      <span class="ticker-label">NEW</span>
-      <strong>${p.name}</strong> • ${p.location} • ${p.price}
-    </div>
-  `).join('');
-  
-  ticker.innerHTML = tickerHTML + tickerHTML; // Duplicate for smooth scrolling
-}
-
-// ===== INIT HOME PAGE =====
-document.addEventListener('DOMContentLoaded', () => {
-  renderHomeProjects();
-  renderTicker();
-  console.log('✅ Home page properties loaded');
+// Attach to form on page load
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('#contact form') || document.querySelector('form');
+    if (form) {
+        form.addEventListener('submit', sendToWhatsApp);
+    }
 });
 </script>
-  function renderHomeProjects() {
-  const featured = getLatestProperties(4);
-  // ... renders properties dynamically
-}
-
-renderHomeProjects();
-
+  <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('form');
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        const name = document.querySelector('input[name="name"]').value;
+        const phone = document.querySelector('input[type="tel"]').value;
+        const email = document.querySelector('input[type="email"]').value;
+        const interested = document.querySelector('select[name="interested"]').value;
+        const message = document.querySelector('textarea[name="message"]').value;
+        
+        let msg = `*New Enquiry - Jaipur PrimeEstate*\n\n`;
+        msg += `*Name:* ${name}\n*Phone:* ${phone}\n`;
+        if(email) msg += `*Email:* ${email}\n`;
+        if(interested) msg += `*Interested In:* ${interested}\n`;
+        if(message) msg += `*Message:* ${message}`;
+        
+        window.open(`https://wa.me/917054133390?text=${encodeURIComponent(msg)}`, '_blank');
+        form.reset();
+    });
+});
+</script>
 </body>
 </html>
