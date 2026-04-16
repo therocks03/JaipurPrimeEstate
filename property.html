@@ -1,4 +1,4 @@
-<!DOCTYPE html
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -7,71 +7,67 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --gold: #C9A84C;
-      --gold-light: #E8C96A;
-      --gold-dark: #A07830;
-      --deep: #1A1208;
-      --warm: #2C1F0E;
-      --cream: #FAF6EE;
-      --sand: #F0E8D6;
-      --text: #3A2E1E;
-      --muted: #7A6A50;
-      --white: #FFFFFF;
-      --radius: 4px;
+    :root{
+      --gold:#C9A84C;--gold-light:#E8C96A;--gold-dark:#A07830;--deep:#1A1208;--cream:#FAF6EE;--sand:#F0E8D6;--text:#3A2E1E;--muted:#7A6A50;--white:#FFFFFF;
     }
-    * {margin:0;padding:0;box-sizing:border-box;}
-    body {font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden;}
-    .property-wrap {max-width:1000px;margin:0 auto;padding:56px 40px;}
-    .property-back {display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);cursor:pointer;background:none;border:none;font-family:'DM Sans',sans-serif;padding:0;margin-bottom:32px;transition:color .2s;}
-    .property-back:hover {color:var(--gold-dark);}
-    .property-header {margin-bottom:32px;}
-    .property-tag {display:inline-block;background:rgba(201,168,76,0.15);border:1px solid var(--gold);color:var(--gold-light);font-size:11px;letter-spacing:3px;text-transform:uppercase;padding:5px 18px;margin-bottom:12px;}
-    .property-title {font-family:'Cormorant Garamond',serif;font-size:clamp(32px,4vw,48px);font-weight:500;color:var(--deep);margin-bottom:12px;}
-    .property-price {font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:600;color:var(--gold-dark);margin-bottom:24px;}
-    .property-location {font-size:15px;color:var(--muted);margin-bottom:20px;display:flex;align-items:center;gap:6px;}
-    .share-section {display:flex;align-items:center;gap:12px;padding-bottom:24px;border-bottom:1px solid var(--sand);margin-bottom:32px;flex-wrap:wrap;}
-    .share-label {font-size:13px;color:var(--muted);font-weight:500;}
-    .share-buttons {display:flex;gap:10px;}
-    .share-btn {width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:16px;transition:transform .2s,box-shadow .2s;border:none;cursor:pointer;}
-    .share-btn:hover {transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.15);}
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden;}
+    .property-wrap{max-width:1000px;margin:0 auto;padding:56px 40px;}
+    .property-back{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);cursor:pointer;background:none;border:none;font-family:'DM Sans',sans-serif;padding:0;margin-bottom:32px;transition:color .2s;}
+    .property-back:hover{color:var(--gold-dark);}
+    .property-header{margin-bottom:32px;}
+    .property-tag{display:inline-block;background:rgba(201,168,76,0.15);border:1px solid var(--gold);color:var(--gold-light);font-size:11px;letter-spacing:3px;text-transform:uppercase;padding:5px 18px;margin-bottom:12px;}
+    .property-title{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,4vw,48px);font-weight:500;color:var(--deep);margin-bottom:12px;}
+    .property-price{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:600;color:var(--gold-dark);margin-bottom:24px;}
+    .property-location{font-size:15px;color:var(--muted);margin-bottom:20px;display:flex;align-items:center;gap:6px;}
+    .share-section{display:flex;align-items:center;gap:12px;padding-bottom:24px;border-bottom:1px solid var(--sand);margin-bottom:32px;flex-wrap:wrap;}
+    .share-label{font-size:13px;color:var(--muted);font-weight:500;}
+    .share-buttons{display:flex;gap:10px;}
+    .share-btn{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:16px;transition:transform .2s,box-shadow .2s;border:none;cursor:pointer;}
+    .share-btn:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.15);}
     .share-btn.whatsapp{background:#25D366;color:white;}
     .share-btn.facebook{background:#1877F2;color:white;}
     .share-btn.twitter{background:#1DA1F2;color:white;}
     .share-btn.linkedin{background:#0A66C2;color:white;}
     .share-btn.copy{background:var(--sand);color:var(--text);}
-    .property-gallery {margin-bottom:40px;}
-    .main-image {width:100%;height:500px;object-fit:cover;display:block;margin-bottom:12px;}
-    .thumbnail-strip {display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:12px;}
-    .thumbnail {width:100%;height:120px;object-fit:cover;display:block;cursor:pointer;transition:opacity .2s;}
-    .thumbnail:hover {opacity:.7;}
-    .details-grid {display:grid;grid-template-columns:repeat(2,1fr);gap:32px;margin-bottom:40px;}
-    .detail-section {background:var(--white);padding:28px;}
-    .detail-section h2 {font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--deep);margin-bottom:16px;}
-    .detail-list {list-style:none;}
-    .detail-list li {font-size:15px;color:var(--text);padding:10px 0;border-bottom:1px solid var(--sand);display:flex;justify-content:space-between;align-items:center;}
-    .detail-list li:last-child {border-bottom:none;}
-    .detail-list li strong {color:var(--deep);font-weight:600;}
-    .detail-list li span {color:var(--muted);}
-    .amenities-grid {display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
-    .amenity-item {display:flex;align-items:center;gap:8px;font-size:14px;color:var(--text);}
-    .amenity-item::before {content:'✓';color:var(--gold-dark);font-weight:700;font-size:16px;}
-    .property-cta {background:var(--deep);padding:40px;text-align:center;margin:40px 0;}
-    .property-cta h3 {font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--white);margin-bottom:10px;}
-    .property-cta p {color:rgba(255,255,255,.6);font-size:15px;margin-bottom:24px;}
-    .cta-buttons {display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
-    .cta-btn {display:inline-flex;align-items:center;gap:8px;padding:14px 28px;font-size:13px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;text-decoration:none;border-radius:2px;transition:.2s;}
-    .cta-btn.primary{background:var(--gold);color:var(--deep);} .cta-btn.primary:hover{background:var(--gold-light);} .cta-btn.secondary{background:transparent;color:var(--white);border:2px solid var(--white);} .cta-btn.secondary:hover{background:var(--white);color:var(--deep);}
-    .related-properties {margin-top:56px;padding-top:40px;border-top:2px solid var(--sand);} .related-properties h3 {font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--deep);margin-bottom:28px;}
-    .related-grid {display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
-    .related-card {background:var(--white);overflow:hidden;cursor:pointer;transition:transform .2s,box-shadow .2s;text-decoration:none;display:block;}
-    .related-card:hover {transform:translateY(-4px);box-shadow:0 12px 36px rgba(0,0,0,.1);} .related-card img {width:100%;height:160px;object-fit:cover;display:block;}
-    .related-card-body {padding:16px;}
-    .related-card-tag {font-size:10px;color:var(--gold-dark);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;}
-    .related-card-title {font-size:16px;color:var(--deep);font-weight:600;margin-bottom:6px;}
-    .related-card-price {font-size:14px;color:var(--gold-dark);font-weight:700;}
-    .map-container {width:100%;height:400px;margin:24px 0;}
-    @media(max-width:900px){.details-grid{grid-template-columns:1fr;}.related-grid{grid-template-columns:1fr;}}
+    .property-gallery{margin-bottom:40px;}
+    .main-image{width:100%;height:500px;object-fit:cover;display:block;margin-bottom:12px;}
+    .thumbnail-strip{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:12px;}
+    .thumbnail{width:100%;height:120px;object-fit:cover;display:block;cursor:pointer;transition:opacity .2s;}
+    .thumbnail:hover{opacity:.7;}
+    .details-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:32px;margin-bottom:40px;}
+    .detail-section{background:var(--white);padding:28px;}
+    .detail-section h2{font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--deep);margin-bottom:16px;}
+    .detail-list{list-style:none;}
+    .detail-list li{font-size:15px;color:var(--text);padding:10px 0;border-bottom:1px solid var(--sand);display:flex;justify-content:space-between;align-items:center;}
+    .detail-list li:last-child{border-bottom:none;}
+    .detail-list li strong{color:var(--deep);font-weight:600;}
+    .detail-list li span{color:var(--muted);}
+    .amenities-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+    .amenity-item{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--text);}
+    .amenity-item::before{content:'✓';color:var(--gold-dark);font-weight:700;font-size:16px;}
+    .property-cta{background:var(--deep);padding:40px;text-align:center;margin:40px 0;}
+    .property-cta h3{font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--white);margin-bottom:10px;}
+    .property-cta p{color:rgba(255,255,255,.6);font-size:15px;margin-bottom:24px;}
+    .cta-buttons{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+    .cta-btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;font-size:13px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;text-decoration:none;border-radius:2px;transition:.2s;}
+    .cta-btn.primary{background:var(--gold);color:var(--deep);} .cta-btn.primary:hover{background:var(--gold-light);}
+    .cta-btn.secondary{background:transparent;color:var(--white);border:2px solid var(--white);} .cta-btn.secondary:hover{background:var(--white);color:var(--deep);}
+    .related-properties{margin-top:56px;padding-top:40px;border-top:2px solid var(--sand);}
+    .related-properties h3{font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--deep);margin-bottom:28px;}
+    .related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+    .related-card{background:var(--white);overflow:hidden;cursor:pointer;transition:transform .2s,box-shadow .2s;text-decoration:none;display:block;}
+    .related-card:hover{transform:translateY(-4px);box-shadow:0 12px 36px rgba(0,0,0,.1);}
+    .related-card img{width:100%;height:160px;object-fit:cover;display:block;}
+    .related-card-body{padding:16px;}
+    .related-card-tag{font-size:10px;color:var(--gold-dark);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;}
+    .related-card-title{font-size:16px;color:var(--deep);font-weight:600;margin-bottom:6px;}
+    .related-card-price{font-size:14px;color:var(--gold-dark);font-weight:700;}
+    .map-container{width:100%;height:400px;margin:24px 0;}
+    @media(max-width:900px){
+      .details-grid{grid-template-columns:1fr;}
+      .related-grid{grid-template-columns:1fr;}
+    }
   </style>
 </head>
 <body>
@@ -83,6 +79,7 @@
       <div class="property-price"></div>
       <div class="property-location"></div>
     </div>
+
     <div class="share-section">
       <div class="share-label">Share this property:</div>
       <div class="share-buttons">
@@ -93,10 +90,12 @@
         <button class="share-btn copy" onclick="copyPropertyLink()" title="Copy link">🔗</button>
       </div>
     </div>
+
     <div class="property-gallery">
       <img class="main-image" id="mainImage" src="" alt="Main Image">
       <div class="thumbnail-strip" id="thumbnails"></div>
     </div>
+
     <div class="details-grid">
       <div class="detail-section">
         <h2>Property Details</h2>
@@ -108,7 +107,9 @@
         <div class="amenities-grid" id="amenitiesSection"></div>
       </div>
     </div>
+
     <div class="map-container"></div>
+
     <div class="property-cta">
       <h3>Interested in This Property?</h3>
       <p>Schedule a site visit with our expert — Mr. Kedar Kholiya — for personalised guidance.</p>
@@ -118,11 +119,13 @@
         <a href="index.html#contact" class="cta-btn secondary">📝 Enquire Now</a>
       </div>
     </div>
+
     <div class="related-properties">
       <h3>Similar Properties</h3>
       <div class="related-grid" id="relatedGrid"></div>
     </div>
   </div>
+
   <script src="publish.js"></script>
 </body>
 </html>
