@@ -9,6 +9,11 @@
     "lng": 75.7873,
     "description": "Spacious 4‑BHK villa with garden, private pool, and modern amenities.",
     "imageUrl": "https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=800&q=80",
+    "images": [
+      "https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=800&q=80",
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80",
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80"
+    ],
     "amenities": ["Gym", "Swimming Pool", "Parking", "Garden"]
   },
   {
@@ -21,6 +26,10 @@
     "lng": 75.8235,
     "description": "2‑BHK apartment with city view, close to metro and shopping centers.",
     "imageUrl": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80",
+    "images": [
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80",
+      "https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=800&q=80"
+    ],
     "amenities": ["Gym", "Security", "Power Backup"]
   }
 ]
