@@ -5,8 +5,7 @@ async function fetchProperties() {
   try {
     const resp = await fetch('properties.json');
     if (!resp.ok) throw new Error('Failed to load properties');
-    const data = await resp.json();
-    return data;
+    return await resp.json();
   } catch (e) {
     console.error(e);
     return [];
@@ -15,7 +14,6 @@ async function fetchProperties() {
 
 // Open property detail page (used from listing cards)
 function openProperty(id) {
-  // Navigate to the dedicated property page
   window.location.href = `property.html?pid=${id}`;
 }
 
@@ -33,25 +31,28 @@ async function loadPropertyDetail() {
     document.body.innerHTML = '<p>Property not found.</p>';
     return;
   }
-  // Populate DOM elements – IDs must exist in property.html
+
+  // Populate DOM
   document.title = `${prop.name} – Jaipur PrimeEstate`;
   document.querySelector('.property-title').textContent = prop.name;
   document.querySelector('.property-price').textContent = prop.price;
   document.querySelector('.property-location').textContent = prop.address;
-  document.querySelector('#propDescription').textContent = prop.description;
-  // Gallery – main image and thumbnails
+  document.getElementById('propDescription').textContent = prop.description;
+
+  // Gallery (main image + up to 15 thumbnails)
   const mainImg = document.getElementById('mainImage');
   mainImg.src = prop.imageUrl || '';
   const thumbContainer = document.getElementById('thumbnails');
   thumbContainer.innerHTML = '';
-  (prop.images || []).forEach((src, idx) => {
+  (prop.images || []).slice(0, 15).forEach(src => {
     const img = document.createElement('img');
     img.src = src;
     img.className = 'thumbnail';
     img.onclick = () => { mainImg.src = src; };
     thumbContainer.appendChild(img);
   });
-  // Amenities list
+
+  // Amenities
   const amenitiesSection = document.getElementById('amenitiesSection');
   amenitiesSection.innerHTML = '';
   (prop.amenities || []).forEach(a => {
@@ -60,7 +61,8 @@ async function loadPropertyDetail() {
     div.textContent = a;
     amenitiesSection.appendChild(div);
   });
-  // Details list (key/value pairs)
+
+  // Details list (key/value)
   const detailsList = document.getElementById('detailsList');
   detailsList.innerHTML = '';
   const detailMap = {
@@ -76,12 +78,11 @@ async function loadPropertyDetail() {
     li.innerHTML = `<strong>${k}</strong><span>${v}</span>`;
     detailsList.appendChild(li);
   }
-  // Google Maps embed – free iframe without API key
+
+  // Google Maps embed (free iframe, no API key)
   const mapContainer = document.querySelector('.map-container');
   if (mapContainer) {
-    const lat = prop.lat;
-    const lng = prop.lng;
-    const src = `https://www.google.com/maps?q=${lat},${lng}&hl=en&z=15&output=embed`;
+    const src = `https://www.google.com/maps?q=${prop.lat},${prop.lng}&hl=en&z=15&output=embed`;
     mapContainer.innerHTML = `<iframe width="100%" height="400" frameborder="0" style="border:0" src="${src}" allowfullscreen></iframe>`;
   }
 }
