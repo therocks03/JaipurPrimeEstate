@@ -1,0 +1,26 @@
+[
+  {
+    "id": "p1",
+    "name": "Luxury Villa in Jaipur",
+    "type": "Villa",
+    "price": "₹ 2.5 Cr",
+    "address": "Sector 5, Jaipur",
+    "lat": 26.9124,
+    "lng": 75.7873,
+    "description": "Spacious 4‑BHK villa with garden, private pool, and modern amenities.",
+    "imageUrl": "https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=800&q=80",
+    "amenities": ["Gym", "Swimming Pool", "Parking", "Garden"]
+  },
+  {
+    "id": "p2",
+    "name": "Modern Apartment in Jaipur",
+    "type": "Apartment",
+    "price": "₹ 85 Lakh",
+    "address": "Malviya Nagar, Jaipur",
+    "lat": 26.9239,
+    "lng": 75.8235,
+    "description": "2‑BHK apartment with city view, close to metro and shopping centers.",
+    "imageUrl": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80",
+    "amenities": ["Gym", "Security", "Power Backup"]
+  }
+]
