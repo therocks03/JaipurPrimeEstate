@@ -366,8 +366,6 @@ function showCopyNotification() {
 let ALL_BLOGS = [];
 
 async function initBlogs() {
-
-async function initBlogs() {
   try {
     const resp = await fetch('blogs.json');
     if (!resp.ok) throw new Error('Failed to load blogs');
