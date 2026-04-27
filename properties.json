@@ -3,33 +3,78 @@
     "id": "p1",
     "name": "Luxury Villa in Jaipur",
     "type": "Villa",
+    "tag": "Featured",
     "price": "₹ 2.5 Cr",
+    "location": "📍 Sector 5, Jaipur",
     "address": "Sector 5, Jaipur",
     "lat": 26.9124,
     "lng": 75.7873,
+    "plotSize": "300 sq. yd.",
+    "status": "Available",
     "description": "Spacious 4‑BHK villa with garden, private pool, and modern amenities.",
     "imageUrl": "https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=800&q=80",
     "images": [
       "https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=800&q=80",
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80",
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80"
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80",
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80"
     ],
-    "amenities": ["Gym", "Swimming Pool", "Parking", "Garden"]
+    "amenities": ["Gym", "Swimming Pool", "Parking", "Garden"],
+    "possession": "Ready to Move"
   },
   {
     "id": "p2",
     "name": "Modern Apartment in Jaipur",
     "type": "Apartment",
+    "tag": "New Launch",
     "price": "₹ 85 Lakh",
+    "location": "📍 Malviya Nagar, Jaipur",
     "address": "Malviya Nagar, Jaipur",
     "lat": 26.9239,
     "lng": 75.8235,
+    "plotSize": "1200 sq. ft.",
+    "status": "Available",
     "description": "2‑BHK apartment with city view, close to metro and shopping centers.",
     "imageUrl": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80",
     "images": [
       "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80",
-      "https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=800&q=80"
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80"
     ],
-    "amenities": ["Gym", "Security", "Power Backup"]
+    "amenities": ["Gym", "Security", "Power Backup"],
+    "possession": "Under Construction"
+  },
+  {
+    "id": "p3",
+    "name": "RLB Pride Residential Plots",
+    "type": "Residential Plot",
+    "tag": "JDA Approved",
+    "price": "₹ 14,950/sq. yd.",
+    "location": "📍 Jaipur–Kota Highway",
+    "address": "Jaipur–Kota Highway",
+    "lat": 26.8500,
+    "lng": 75.8000,
+    "plotSize": "50–200 sq. yd.",
+    "status": "Available",
+    "description": "Premium JDA-approved plots with modern infrastructure near Kota Highway corridor. These plots offer excellent connectivity to both Jaipur city center and the rapidly developing industrial zones.",
+    "imageUrl": "https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=1200&q=80",
+    "amenities": ["24/7 Security", "Wide Roads", "Underground Electricity", "Water Supply", "Street Lighting", "Green Spaces"],
+    "rera": "RAJ/P/2024/001",
+    "possession": "Immediate"
+  },
+  {
+    "id": "p4",
+    "name": "Balaji Green 2 City",
+    "type": "Township Plot",
+    "tag": "RERA Approved",
+    "price": "₹ 19,950/sq. yd.",
+    "location": "📍 Bhilwada Highway, Jaipur",
+    "address": "Bhilwada Highway, Jaipur",
+    "lat": 26.8000,
+    "lng": 75.7000,
+    "plotSize": "60–500 sq. yd.",
+    "status": "Available",
+    "description": "Affordable township plots in a well-planned colony with full amenities and green landscape. RERA registration ensures complete transparency and timely delivery.",
+    "imageUrl": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80",
+    "amenities": ["Clubhouse", "Swimming Pool", "Kids Play Area", "Jogging Track", "Community Hall", "Shopping Complex"],
+    "possession": "6 Months"
   }
 ]
