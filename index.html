@@ -1239,6 +1239,9 @@ function renderListing() {
     }
   });
   grid.innerHTML = html;
+  
+  // Re-observe new elements for animations
+  if (window.refreshObserver) window.refreshObserver();
 }
 
 // ===== PROPERTY DETAIL =====
@@ -1985,6 +1988,9 @@ console.log('📊 Loaded', getProperties().length, 'properties from localStorage
           <a href="blog.html?id=${p.id}" class="blog-link">Read More →</a>
         </div>
       </div>`).join('');
+    
+    // Re-observe new elements for animations
+    if (window.refreshObserver) window.refreshObserver();
   } catch (e) {
     console.error('Error loading home blogs:', e);
   }
@@ -2094,16 +2100,22 @@ console.log('📊 Loaded', getProperties().length, 'properties from localStorage
   });
 
   // ===== SCROLL ANIMATIONS =====
-  const fadeEls = document.querySelectorAll('.fade-in');
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach((e, i) => {
+    entries.forEach((e) => {
       if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('visible'), i * 60);
+        e.target.classList.add('visible');
         observer.unobserve(e.target);
       }
     });
-  }, { threshold: 0.12 });
-  fadeEls.forEach(el => observer.observe(el));
+  }, { threshold: 0.1 });
+
+  window.refreshObserver = () => {
+    const fadeEls = document.querySelectorAll('.fade-in:not(.visible), .fade-up:not(.visible)');
+    fadeEls.forEach(el => observer.observe(el));
+  };
+
+  // Initial call
+  window.refreshObserver();
 
   // ===== COUNT-UP =====
   const counters = document.querySelectorAll('[data-count]');
