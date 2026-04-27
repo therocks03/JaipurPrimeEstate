@@ -5,7 +5,8 @@ async function fetchProperties() {
   try {
     const resp = await fetch('properties.json');
     if (!resp.ok) throw new Error('Failed to load properties');
-    return await resp.json();
+    const data = await resp.json();
+    return data;
   } catch (e) {
     console.error(e);
     return [];
@@ -14,45 +15,49 @@ async function fetchProperties() {
 
 // Open property detail page (used from listing cards)
 function openProperty(id) {
+  // Navigate to the dedicated property page
   window.location.href = `property.html?pid=${id}`;
 }
 
 // Load property details on property.html based on URL param
 async function loadPropertyDetail() {
+  // Guard: only run on property.html or if specifically targeted
+  if (!window.location.pathname.includes('property.html')) return;
+
   const params = new URLSearchParams(window.location.search);
   const pid = params.get('pid');
   if (!pid) {
-    document.body.innerHTML = '<p>Property ID missing.</p>';
+    console.warn('Property ID missing in URL.');
+    const wrap = document.querySelector('.property-wrap');
+    if (wrap) wrap.innerHTML = '<h2>Property ID missing.</h2><p><a href="index.html">Return to homepage</a></p>';
     return;
   }
   const properties = await fetchProperties();
   const prop = properties.find(p => p.id === pid);
   if (!prop) {
-    document.body.innerHTML = '<p>Property not found.</p>';
+    const wrap = document.querySelector('.property-wrap');
+    if (wrap) wrap.innerHTML = '<h2>Property not found.</h2><p><a href="index.html">Return to homepage</a></p>';
     return;
   }
-
-  // Populate DOM
+  // Populate DOM elements – IDs must exist in property.html
   document.title = `${prop.name} – Jaipur PrimeEstate`;
   document.querySelector('.property-title').textContent = prop.name;
   document.querySelector('.property-price').textContent = prop.price;
   document.querySelector('.property-location').textContent = prop.address;
-  document.getElementById('propDescription').textContent = prop.description;
-
-  // Gallery (main image + up to 15 thumbnails)
+  document.querySelector('#propDescription').textContent = prop.description;
+  // Gallery – main image and thumbnails
   const mainImg = document.getElementById('mainImage');
   mainImg.src = prop.imageUrl || '';
   const thumbContainer = document.getElementById('thumbnails');
   thumbContainer.innerHTML = '';
-  (prop.images || []).slice(0, 15).forEach(src => {
+  (prop.images || []).forEach((src, idx) => {
     const img = document.createElement('img');
     img.src = src;
     img.className = 'thumbnail';
     img.onclick = () => { mainImg.src = src; };
     thumbContainer.appendChild(img);
   });
-
-  // Amenities
+  // Amenities list
   const amenitiesSection = document.getElementById('amenitiesSection');
   amenitiesSection.innerHTML = '';
   (prop.amenities || []).forEach(a => {
@@ -61,8 +66,7 @@ async function loadPropertyDetail() {
     div.textContent = a;
     amenitiesSection.appendChild(div);
   });
-
-  // Details list (key/value)
+  // Details list (key/value pairs)
   const detailsList = document.getElementById('detailsList');
   detailsList.innerHTML = '';
   const detailMap = {
@@ -78,11 +82,12 @@ async function loadPropertyDetail() {
     li.innerHTML = `<strong>${k}</strong><span>${v}</span>`;
     detailsList.appendChild(li);
   }
-
-  // Google Maps embed (free iframe, no API key)
+  // Google Maps embed – free iframe without API key
   const mapContainer = document.querySelector('.map-container');
   if (mapContainer) {
-    const src = `https://www.google.com/maps?q=${prop.lat},${prop.lng}&hl=en&z=15&output=embed`;
+    const lat = prop.lat;
+    const lng = prop.lng;
+    const src = `https://www.google.com/maps?q=${lat},${lng}&hl=en&z=15&output=embed`;
     mapContainer.innerHTML = `<iframe width="100%" height="400" frameborder="0" style="border:0" src="${src}" allowfullscreen></iframe>`;
   }
 }
